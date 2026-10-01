@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulasi Interaktif TKBI IPDN - Tes Kemampuan Bahasa Inggris</title>
-    <!-- Tailwind CSS -->
+    <title>Simulasi Komprehensif TKBI IPDN - Tes Kemampuan Bahasa Inggris Kedinasan</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts Inter & Outfit -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
@@ -23,6 +23,7 @@
                         ipdn: {
                             gold: '#d4af37',
                             goldlight: '#f3e5ab',
+                            golddark: '#9a7b1c',
                             navy: '#1e293b',
                             accent: '#2563eb',
                             red: '#dc2626'
@@ -31,6 +32,7 @@
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
                         heading: ['Outfit', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
                     }
                 }
             }
@@ -39,108 +41,172 @@
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 100%);
+            background: linear-gradient(135deg, #090d16 0%, #0f172a 50%, #171026 100%);
             min-height: 100vh;
             color: #f8fafc;
+            background-attachment: fixed;
         }
         .glass-card {
-            background: rgba(30, 41, 59, 0.7);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(15, 23, 42, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glass-card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .glass-card-hover:hover {
+            border-color: rgba(212, 175, 55, 0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
         }
         .gold-gradient-text {
-            background: linear-gradient(135deg, #fef08a 0%, #d4af37 50%, #b45309 100%);
+            background: linear-gradient(135deg, #fff5c0 0%, #d4af37 50%, #aa7c11 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+        }
+        .gold-gradient-bg {
+            background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%);
         }
         .gold-border {
             border-color: #d4af37;
         }
-        /* Custom Scrollbar */
+        /* Custom Scrollbar Styling */
         ::-webkit-scrollbar {
             width: 8px;
+            height: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: rgba(15, 23, 42, 0.6);
+            background: rgba(15, 23, 42, 0.8);
         }
         ::-webkit-scrollbar-thumb {
-            background: rgba(212, 175, 55, 0.5);
+            background: rgba(212, 175, 55, 0.4);
             border-radius: 4px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: rgba(212, 175, 55, 0.8);
+            background: rgba(212, 175, 55, 0.7);
+        }
+        .animate-pulse-slow {
+            animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        .tab-active {
+            background: linear-gradient(135deg, #d4af37 0%, #b8860b 100%) !important;
+            color: #050b18 !important;
+            font-weight: 700 !important;
+            box-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
         }
     </style>
 </head>
-<body class="flex flex-col min-h-screen">
+<body class="flex flex-col min-h-screen text-slate-100 antialiased selection:bg-amber-500 selection:text-slate-950">
 
     <!-- Header Navigation Bar -->
-    <header class="sticky top-0 z-50 glass-card border-b border-slate-700/50 px-4 lg:px-8 py-3">
+    <header class="sticky top-0 z-50 glass-card border-b border-slate-800/80 px-4 lg:px-8 py-3.5 backdrop-blur-md">
         <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-4">
             <!-- Brand & Emblem -->
-            <div class="flex items-center gap-3">
-                <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-yellow-500 to-amber-300 flex items-center justify-center shadow-lg shadow-yellow-500/20 text-slate-900 font-bold text-xl border-2 border-amber-200">
+            <div class="flex items-center gap-3.5">
+                <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-amber-600 via-amber-400 to-yellow-200 flex items-center justify-center shadow-lg shadow-amber-500/20 text-slate-950 font-bold text-2xl border border-amber-200/50">
                     <i class="fa-solid fa-graduation-cap"></i>
                 </div>
                 <div>
-                    <h1 class="font-heading font-extrabold text-lg lg:text-xl tracking-tight leading-none text-white">
-                        SIMULASI <span class="gold-gradient-text">TKBI IPDN</span>
-                    </h1>
-                    <p class="text-xs text-slate-400 mt-0.5">Tes Kemampuan Bahasa Inggris Kedinasan</p>
+                    <div class="flex items-center gap-2">
+                        <h1 class="font-heading font-black text-xl lg:text-2xl tracking-tight leading-none text-white">
+                            SIMULASI <span class="gold-gradient-text">TKBI IPDN</span>
+                        </h1>
+                        <span class="bg-amber-500/10 text-amber-400 border border-amber-500/30 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider">Lengkap 2026</span>
+                    </div>
+                    <p class="text-xs text-slate-400 mt-0.5 font-medium">Tes Kemampuan Bahasa Inggris Standar Kedinasan (310 – 677 Poin)</p>
                 </div>
             </div>
 
             <!-- Global Timer & Progress Badge -->
-            <div class="flex items-center gap-4">
-                <div id="timer-box" class="flex items-center gap-2 bg-slate-900/80 px-4 py-2 rounded-xl border border-amber-500/30">
-                    <i class="fa-solid fa-stopwatch text-amber-400 animate-pulse"></i>
-                    <span id="timer-display" class="font-mono text-lg font-bold text-amber-300">00:00:00</span>
+            <div class="flex items-center gap-3">
+                <div id="timer-box" class="flex items-center gap-2.5 bg-slate-950/90 px-4 py-2 rounded-xl border border-amber-500/30 shadow-inner">
+                    <i class="fa-solid fa-stopwatch text-amber-400 animate-pulse text-lg"></i>
+                    <div class="flex flex-col">
+                        <span class="text-[9px] uppercase tracking-widest text-slate-400 font-bold leading-none">Sisa Waktu</span>
+                        <span id="timer-display" class="font-mono text-base lg:text-lg font-bold text-amber-300 leading-tight">01:30:00</span>
+                    </div>
                 </div>
-                <button onclick="finishExam()" class="bg-red-600 hover:bg-red-700 text-white font-semibold px-4 py-2 rounded-xl text-sm transition-all duration-200 shadow-lg shadow-red-600/30 flex items-center gap-2">
+                <button onclick="confirmFinishExam()" class="bg-gradient-to-r from-red-600 to-red-700 hover:from-red-500 hover:to-red-600 text-white font-semibold px-4 py-2.5 rounded-xl text-xs lg:text-sm transition-all duration-200 shadow-lg shadow-red-600/20 flex items-center gap-2 border border-red-500/30">
                     <i class="fa-solid fa-check-double"></i>
-                    <span class="hidden sm:inline">Selesai &</span> Lihat Hasil
+                    <span class="hidden sm:inline font-bold">Akhiri Ujian & Skor</span>
                 </button>
             </div>
         </div>
     </header>
 
     <!-- Main Content Container -->
-    <main class="flex-1 max-w-7xl w-full mx-auto p-4 lg:p-6 flex flex-col gap-6">
+    <main class="flex-1 max-w-7xl w-full mx-auto p-4 lg:p-8 flex flex-col gap-6">
+
+        <!-- Banner Information according to standard photo criteria -->
+        <div class="glass-card p-6 rounded-2xl border-l-4 border-l-amber-500 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 shadow-xl relative overflow-hidden">
+            <div class="absolute -right-12 -bottom-12 opacity-5 text-amber-400 text-9xl pointer-events-none">
+                <i class="fa-solid fa-building-columns"></i>
+            </div>
+            <div class="space-y-2 z-10">
+                <div class="flex items-center gap-2">
+                    <span class="bg-amber-500/20 text-amber-300 text-xs font-bold px-3 py-1 rounded-full border border-amber-500/40">Panduan Resmi TKBI</span>
+                    <span class="text-xs text-slate-400"><i class="fa-solid fa-clock mr-1"></i> Total Durasi: 90 Menit</span>
+                </div>
+                <h2 class="text-xl lg:text-2xl font-extrabold font-heading text-white tracking-tight">
+                    Materi Tes & Standar Penilaian Kemampuan Bahasa Inggris IPDN
+                </h2>
+                <p class="text-sm text-slate-300 max-w-3xl leading-relaxed">
+                    Simulasi ini dirancang khusus mengikuti struktur tes TKBI resmi IPDN: mencakup <strong>Listening Comprehension</strong> (Percakapan, Monolog, & Diskusi), <strong>Reading & Language Skills</strong> (Notice, Pesan, Artikel, Opini, Grammar, & Vocabulary), serta <strong>Writing Assessment</strong> (Official Email & Public Audience Essay) dengan sistem penskoran konversi <strong>310 - 677 poin</strong>.
+                </p>
+            </div>
+            <div class="bg-slate-900/90 border border-amber-500/30 rounded-2xl p-4 text-center min-w-[180px] z-10 shadow-lg">
+                <span class="text-[10px] font-extrabold uppercase tracking-widest text-slate-400 block mb-1">RENTANG SKOR TKBI</span>
+                <span class="font-heading font-black text-3xl gold-gradient-text">310 – 677</span>
+                <span class="text-[11px] font-semibold text-amber-300/80 block mt-1">Skala Standard TOEFL/TKBI</span>
+            </div>
+        </div>
 
         <!-- Module Navigation Tabs -->
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 lg:gap-4 bg-slate-900/60 p-2 rounded-2xl border border-slate-800">
-            <button onclick="switchTab('listening')" id="tab-listening" class="tab-btn flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-heading font-semibold text-sm transition-all duration-300 bg-amber-500 text-slate-950 shadow-md">
-                <i class="fa-solid fa-headphones"></i>
-                <span>1. Listening</span>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-2 lg:gap-3 bg-slate-950/80 p-2 rounded-2xl border border-slate-800 shadow-inner">
+            <button onclick="switchTab('listening')" id="tab-listening" class="tab-btn tab-active flex items-center justify-center gap-2.5 py-3.5 px-4 rounded-xl font-heading font-bold text-xs lg:text-sm transition-all duration-300 text-slate-400 hover:text-white">
+                <i class="fa-solid fa-headphones text-base"></i>
+                <span class="truncate">a. Listening (30 Soal)</span>
             </button>
-            <button onclick="switchTab('reading')" id="tab-reading" class="tab-btn flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-heading font-semibold text-sm transition-all duration-300 text-slate-400 hover:text-white hover:bg-slate-800/60">
-                <i class="fa-solid fa-book-open"></i>
-                <span>2. Reading</span>
+            <button onclick="switchTab('reading')" id="tab-reading" class="tab-btn flex items-center justify-center gap-2.5 py-3.5 px-4 rounded-xl font-heading font-bold text-xs lg:text-sm transition-all duration-300 text-slate-400 hover:text-white">
+                <i class="fa-solid fa-book-open text-base"></i>
+                <span class="truncate">b. Reading (30 Soal)</span>
             </button>
-            <button onclick="switchTab('writing')" id="tab-writing" class="tab-btn flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-heading font-semibold text-sm transition-all duration-300 text-slate-400 hover:text-white hover:bg-slate-800/60">
-                <i class="fa-solid fa-pen-nib"></i>
-                <span>3. Writing</span>
+            <button onclick="switchTab('writing')" id="tab-writing" class="tab-btn flex items-center justify-center gap-2.5 py-3.5 px-4 rounded-xl font-heading font-bold text-xs lg:text-sm transition-all duration-300 text-slate-400 hover:text-white">
+                <i class="fa-solid fa-pen-nib text-base"></i>
+                <span class="truncate">c. Writing (2 Tugas)</span>
             </button>
-            <button onclick="switchTab('result')" id="tab-result" class="tab-btn flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-heading font-semibold text-sm transition-all duration-300 text-slate-400 hover:text-white hover:bg-slate-800/60">
-                <i class="fa-solid fa-chart-line"></i>
-                <span>4. Skor & Pembahasan</span>
+            <button onclick="switchTab('result')" id="tab-result" class="tab-btn flex items-center justify-center gap-2.5 py-3.5 px-4 rounded-xl font-heading font-bold text-xs lg:text-sm transition-all duration-300 text-slate-400 hover:text-white">
+                <i class="fa-solid fa-chart-line text-base"></i>
+                <span class="truncate">Penilaian & Pembahasan</span>
             </button>
         </div>
 
-        <!-- SECTION 1: LISTENING SECTION -->
+        <!-- ================= SECTION 1: LISTENING SECTION ================= -->
         <section id="section-listening" class="tab-content flex flex-col gap-6">
-            <!-- Info Card -->
-            <div class="glass-card p-5 rounded-2xl border-l-4 border-l-amber-500 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <!-- Header Card Listening -->
+            <div class="glass-card p-5 lg:p-6 rounded-2xl border-l-4 border-l-amber-500 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
-                    <h2 class="text-xl font-bold font-heading text-amber-400 flex items-center gap-2">
-                        <i class="fa-solid fa-headphones-simple"></i> Sub-Tes 1: Listening Comprehension
-                    </h2>
-                    <p class="text-slate-300 text-sm mt-1">
-                        Mencakup Percakapan Pendek, Monolog, dan Diskusi. Dengarkan audio dari Web Speech API dengan menekan tombol tombol pemutar di setiap soal.
+                    <div class="flex items-center gap-2">
+                        <span class="bg-amber-500/20 text-amber-300 text-xs font-bold px-2.5 py-0.5 rounded border border-amber-500/30">Sub-Tes A</span>
+                        <h2 class="text-xl font-bold font-heading text-amber-400 flex items-center gap-2">
+                            <i class="fa-solid fa-headphones-simple"></i> Listening Comprehension
+                        </h2>
+                    </div>
+                    <p class="text-slate-300 text-xs lg:text-sm mt-1.5 leading-relaxed">
+                        Materi: <strong>Percakapan Pendek, Monolog Pengumuman, dan Diskusi Panel Kedinasan</strong>. Dengarkan narasi audio berstandar Web Speech API dengan menekan tombol tombol putar pada tiap butir soal.
                     </p>
                 </div>
-                <div class="bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs px-3 py-1.5 rounded-lg flex items-center gap-2">
-                    <i class="fa-regular fa-clock"></i> Estimasi Waktu: 20–45 Menit
+                <div class="bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs px-3.5 py-2 rounded-xl flex items-center gap-2 font-semibold whitespace-nowrap">
+                    <i class="fa-regular fa-clock text-base"></i> Alokasi Waktu: 20–45 Menit
+                </div>
+            </div>
+
+            <!-- Listening Filter / Jump Navigator -->
+            <div class="glass-card p-4 rounded-2xl flex flex-wrap items-center justify-between gap-3 text-xs">
+                <span class="text-slate-400 font-medium"><i class="fa-solid fa-list-check mr-1 text-amber-400"></i> Navigasi Cepat Soal Listening:</span>
+                <div id="listening-navigator" class="flex flex-wrap gap-1.5">
+                    <!-- Populated dynamically -->
                 </div>
             </div>
 
@@ -150,20 +216,32 @@
             </div>
         </section>
 
-        <!-- SECTION 2: READING SECTION -->
+
+        <!-- ================= SECTION 2: READING SECTION ================= -->
         <section id="section-reading" class="tab-content hidden flex flex-col gap-6">
-            <!-- Info Card -->
-            <div class="glass-card p-5 rounded-2xl border-l-4 border-l-blue-500 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <!-- Header Card Reading -->
+            <div class="glass-card p-5 lg:p-6 rounded-2xl border-l-4 border-l-blue-500 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
-                    <h2 class="text-xl font-bold font-heading text-blue-400 flex items-center gap-2">
-                        <i class="fa-solid fa-book-open-reader"></i> Sub-Tes 2: Reading & Language Skills
-                    </h2>
-                    <p class="text-slate-300 text-sm mt-1">
-                        Materi meliputi Notice, Pesan Singkat, Artikel Ilmiah/Publik, Opini, Grammar (Structure), & Vocabulary.
+                    <div class="flex items-center gap-2">
+                        <span class="bg-blue-500/20 text-blue-300 text-xs font-bold px-2.5 py-0.5 rounded border border-blue-500/30">Sub-Tes B</span>
+                        <h2 class="text-xl font-bold font-heading text-blue-400 flex items-center gap-2">
+                            <i class="fa-solid fa-book-open-reader"></i> Reading, Grammar & Vocabulary
+                        </h2>
+                    </div>
+                    <p class="text-slate-300 text-xs lg:text-sm mt-1.5 leading-relaxed">
+                        Materi: <strong>Notice, Pesan Singkat, Artikel Kebijakan Publik, Opini, Grammar & Structure, serta Vocabulary Contextual</strong>.
                     </p>
                 </div>
-                <div class="bg-blue-500/10 border border-blue-500/30 text-blue-300 text-xs px-3 py-1.5 rounded-lg flex items-center gap-2">
-                    <i class="fa-regular fa-clock"></i> Estimasi Waktu: 20–45 Menit
+                <div class="bg-blue-500/10 border border-blue-500/30 text-blue-300 text-xs px-3.5 py-2 rounded-xl flex items-center gap-2 font-semibold whitespace-nowrap">
+                    <i class="fa-regular fa-clock text-base"></i> Alokasi Waktu: 20–45 Menit
+                </div>
+            </div>
+
+            <!-- Reading Filter / Jump Navigator -->
+            <div class="glass-card p-4 rounded-2xl flex flex-wrap items-center justify-between gap-3 text-xs">
+                <span class="text-slate-400 font-medium"><i class="fa-solid fa-list-check mr-1 text-blue-400"></i> Navigasi Cepat Soal Reading:</span>
+                <div id="reading-navigator" class="flex flex-wrap gap-1.5">
+                    <!-- Populated dynamically -->
                 </div>
             </div>
 
@@ -173,164 +251,217 @@
             </div>
         </section>
 
-        <!-- SECTION 3: WRITING SECTION -->
+
+        <!-- ================= SECTION 3: WRITING SECTION ================= -->
         <section id="section-writing" class="tab-content hidden flex flex-col gap-6">
-            <!-- Info Card -->
-            <div class="glass-card p-5 rounded-2xl border-l-4 border-l-emerald-500 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+            <!-- Header Card Writing -->
+            <div class="glass-card p-5 lg:p-6 rounded-2xl border-l-4 border-l-emerald-500 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                 <div>
-                    <h2 class="text-xl font-bold font-heading text-emerald-400 flex items-center gap-2">
-                        <i class="fa-solid fa-file-pen"></i> Sub-Tes 3: Writing Assessment
-                    </h2>
-                    <p class="text-slate-300 text-sm mt-1">
-                        Menulis Email Formal / Tulisan Resmi Audiens Luas. Tuliskan jawaban Anda di editor interaktif di bawah untuk mendapatkan analisis otomatis.
+                    <div class="flex items-center gap-2">
+                        <span class="bg-emerald-500/20 text-emerald-300 text-xs font-bold px-2.5 py-0.5 rounded border border-emerald-500/30">Sub-Tes C</span>
+                        <h2 class="text-xl font-bold font-heading text-emerald-400 flex items-center gap-2">
+                            <i class="fa-solid fa-file-pen"></i> Writing Assessment
+                        </h2>
+                    </div>
+                    <p class="text-slate-300 text-xs lg:text-sm mt-1.5 leading-relaxed">
+                        Materi: <strong>Email Formal Kedinasan & Tulisan Publik / Artikel Esai Audiens Luas</strong>. Tuliskan jawaban Anda di lembar kerja di bawah untuk evaluasi tata bahasa, diksi, dan pemenuhan kriteria secara otomatis.
                     </p>
                 </div>
-                <div class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs px-3 py-1.5 rounded-lg flex items-center gap-2">
-                    <i class="fa-regular fa-clock"></i> Estimasi Waktu: ~45 Menit
+                <div class="bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 text-xs px-3.5 py-2 rounded-xl flex items-center gap-2 font-semibold whitespace-nowrap">
+                    <i class="fa-regular fa-clock text-base"></i> Alokasi Waktu: ±45 Menit
                 </div>
             </div>
 
-            <!-- Writing Prompt 1: Email Formal -->
-            <div class="glass-card p-6 rounded-2xl flex flex-col gap-4">
-                <div class="flex items-center justify-between border-b border-slate-700/60 pb-3">
-                    <span class="bg-emerald-500/20 text-emerald-300 text-xs font-semibold px-3 py-1 rounded-full border border-emerald-500/40">Task 1: Official Email Writing</span>
-                    <span class="text-xs text-slate-400">Target: 100 - 150 Kata</span>
+            <!-- Writing Task 1: Official Email -->
+            <div class="glass-card p-6 rounded-2xl flex flex-col gap-5 border border-slate-800 shadow-xl">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-3.5">
+                    <div class="flex items-center gap-2">
+                        <span class="w-7 h-7 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs border border-emerald-500/40">1</span>
+                        <h3 class="font-bold text-base text-slate-100 font-heading">Task 1: Official Formal Email Writing</h3>
+                    </div>
+                    <span class="text-xs bg-slate-900 border border-slate-700 font-mono px-3 py-1 rounded-full text-amber-300">Target: 100 – 150 Kata</span>
                 </div>
-                <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-700 text-sm text-slate-200">
-                    <p class="font-semibold text-emerald-400 mb-1"><i class="fa-solid fa-circle-info mr-1"></i> Prompt Instruksi:</p>
-                    <p>You are a regional officer at the Ministry of Home Affairs. Write a formal email to the IPDN Rector requesting permission to conduct a public administration workshop at the IPDN campus. Briefly outline the objectives, expected number of participants, and proposed dates.</p>
+
+                <!-- Prompt Card -->
+                <div class="bg-slate-950 p-4 lg:p-5 rounded-xl border border-slate-800 text-sm text-slate-200 leading-relaxed">
+                    <p class="font-bold text-emerald-400 text-xs uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                        <i class="fa-solid fa-circle-info"></i> Petunjuk & Instruksi Soal:
+                    </p>
+                    <p class="text-slate-300">
+                        You are a senior regional governance officer at the Ministry of Home Affairs (*Kementerian Dalam Negeri*). Write a formal email to the IPDN Rector requesting permission to conduct a 2-day Public Administration Reform Seminar at the IPDN Main Campus. 
+                    </p>
+                    <ul class="list-disc list-inside text-xs text-slate-400 mt-2 space-y-1 pl-1">
+                        <li>Mention the primary objectives and target participants.</li>
+                        <li>Propose specific tentative dates and required campus facilities.</li>
+                        <li>Use appropriate formal salutation and sign-off terms.</li>
+                    </ul>
                 </div>
 
                 <!-- Textarea Editor -->
                 <div class="flex flex-col gap-2">
-                    <label for="writing-email" class="text-xs font-semibold text-slate-300">Jawaban Email Anda:</label>
-                    <textarea id="writing-email" rows="6" oninput="analyzeWriting('email')" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-4 text-slate-100 text-sm focus:outline-none focus:border-emerald-500 transition-colors" placeholder="Dear Rector of IPDN,..."></textarea>
+                    <div class="flex justify-between items-center">
+                        <label for="writing-email" class="text-xs font-bold text-slate-300 uppercase tracking-wider">Lembar Jawaban Email Formal:</label>
+                        <span id="email-live-word-count" class="text-xs font-mono text-emerald-400 font-bold">0 kata</span>
+                    </div>
+                    <textarea id="writing-email" rows="8" oninput="analyzeWriting('email')" class="w-full bg-slate-950/90 border border-slate-700 rounded-xl p-4 text-slate-100 text-sm focus:outline-none focus:border-emerald-500 focus:ring-1 focus:ring-emerald-500 transition-all font-sans leading-relaxed" placeholder="Subject: Request for Permission to Conduct Public Administration Seminar...&#10;&#10;Dear Rector of IPDN,..."></textarea>
                 </div>
 
-                <!-- Real-time Analysis Metrics -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 bg-slate-900/60 p-4 rounded-xl border border-slate-800 text-xs">
-                    <div>
-                        <span class="text-slate-400 block">Jumlah Kata:</span>
-                        <span id="email-word-count" class="text-sm font-bold text-white">0 kata</span>
+                <!-- Real-time Analysis Metrics Grid -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 bg-slate-950/80 p-4 rounded-xl border border-slate-800 text-xs">
+                    <div class="bg-slate-900/60 p-3 rounded-lg border border-slate-800">
+                        <span class="text-slate-400 block text-[11px] mb-1">Jumlah Kata:</span>
+                        <span id="email-word-status" class="text-sm font-bold text-white font-mono">0 kata</span>
                     </div>
-                    <div>
-                        <span class="text-slate-400 block">Formal Salutation:</span>
-                        <span id="email-salutation-status" class="text-sm font-bold text-red-400"><i class="fa-solid fa-xmark"></i> Belum Ditemukan</span>
+                    <div class="bg-slate-900/60 p-3 rounded-lg border border-slate-800">
+                        <span class="text-slate-400 block text-[11px] mb-1">Formal Salutation:</span>
+                        <span id="email-salutation-status" class="text-xs font-bold text-red-400"><i class="fa-solid fa-xmark mr-1"></i> Belum Ditemukan</span>
                     </div>
-                    <div>
-                        <span class="text-slate-400 block">Kata Kunci Kunci:</span>
-                        <span id="email-keywords-status" class="text-sm font-bold text-amber-400">0 / 4 Terpenuhi</span>
+                    <div class="bg-slate-900/60 p-3 rounded-lg border border-slate-800">
+                        <span class="text-slate-400 block text-[11px] mb-1">Kata Kunci Utama:</span>
+                        <span id="email-keywords-status" class="text-xs font-bold text-amber-400">0 / 4 Terpenuhi</span>
                     </div>
-                    <div>
-                        <span class="text-slate-400 block">Estimasi Skor Writing 1:</span>
-                        <span id="email-score-est" class="text-sm font-bold text-emerald-400">0 / 100</span>
+                    <div class="bg-slate-900/60 p-3 rounded-lg border border-slate-800">
+                        <span class="text-slate-400 block text-[11px] mb-1">Estimasi Nilai Task 1:</span>
+                        <span id="email-score-est" class="text-sm font-bold text-emerald-400 font-mono">0 / 100</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Writing Prompt 2: Public Audience Essay -->
-            <div class="glass-card p-6 rounded-2xl flex flex-col gap-4">
-                <div class="flex items-center justify-between border-b border-slate-700/60 pb-3">
-                    <span class="bg-blue-500/20 text-blue-300 text-xs font-semibold px-3 py-1 rounded-full border border-blue-500/40">Task 2: Essay / Public Article</span>
-                    <span class="text-xs text-slate-400">Target: 180 - 250 Kata</span>
+            <!-- Writing Task 2: Essay for Public Audience -->
+            <div class="glass-card p-6 rounded-2xl flex flex-col gap-5 border border-slate-800 shadow-xl">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-3.5">
+                    <div class="flex items-center gap-2">
+                        <span class="w-7 h-7 rounded-lg bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold text-xs border border-blue-500/40">2</span>
+                        <h3 class="font-bold text-base text-slate-100 font-heading">Task 2: Public Audience Essay / Persuasive Article</h3>
+                    </div>
+                    <span class="text-xs bg-slate-900 border border-slate-700 font-mono px-3 py-1 rounded-full text-amber-300">Target: 180 – 250 Kata</span>
                 </div>
-                <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-700 text-sm text-slate-200">
-                    <p class="font-semibold text-blue-400 mb-1"><i class="fa-solid fa-circle-info mr-1"></i> Prompt Instruksi:</p>
-                    <p>Write an essay discussing the importance of digital transformation in public governance in Indonesia. Mention key benefits such as transparency, efficiency, and improved citizen services.</p>
+
+                <!-- Prompt Card -->
+                <div class="bg-slate-950 p-4 lg:p-5 rounded-xl border border-slate-800 text-sm text-slate-200 leading-relaxed">
+                    <p class="font-bold text-blue-400 text-xs uppercase tracking-wider mb-2 flex items-center gap-1.5">
+                        <i class="fa-solid fa-circle-info"></i> Petunjuk & Instruksi Soal:
+                    </p>
+                    <p class="text-slate-300">
+                        Write an argumentative essay aimed at a general public audience discussing the critical role of <strong>digital transformation in Indonesian public administration</strong>. 
+                    </p>
+                    <ul class="list-disc list-inside text-xs text-slate-400 mt-2 space-y-1 pl-1">
+                        <li>Elaborate on core benefits: public transparency, reduced bureaucratic delays, and improved public service delivery.</li>
+                        <li>Address potential challenges such as digital literacy or regional infrastructure gaps.</li>
+                        <li>Ensure clear essay structure: Introduction, Body Paragraphs, and Conclusion.</li>
+                    </ul>
                 </div>
 
                 <!-- Textarea Editor -->
                 <div class="flex flex-col gap-2">
-                    <label for="writing-essay" class="text-xs font-semibold text-slate-300">Jawaban Esai Anda:</label>
-                    <textarea id="writing-essay" rows="8" oninput="analyzeWriting('essay')" class="w-full bg-slate-950 border border-slate-700 rounded-xl p-4 text-slate-100 text-sm focus:outline-none focus:border-blue-500 transition-colors" placeholder="Digital transformation has become a cornerstone of modern public administration..."></textarea>
+                    <div class="flex justify-between items-center">
+                        <label for="writing-essay" class="text-xs font-bold text-slate-300 uppercase tracking-wider">Lembar Jawaban Esai Publik:</label>
+                        <span id="essay-live-word-count" class="text-xs font-mono text-blue-400 font-bold">0 kata</span>
+                    </div>
+                    <textarea id="writing-essay" rows="10" oninput="analyzeWriting('essay')" class="w-full bg-slate-950/90 border border-slate-700 rounded-xl p-4 text-slate-100 text-sm focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all font-sans leading-relaxed" placeholder="In the era of rapid technological advancement, digital transformation has become indispensable for public governance in Indonesia..."></textarea>
                 </div>
 
-                <!-- Real-time Analysis Metrics -->
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 bg-slate-900/60 p-4 rounded-xl border border-slate-800 text-xs">
-                    <div>
-                        <span class="text-slate-400 block">Jumlah Kata:</span>
-                        <span id="essay-word-count" class="text-sm font-bold text-white">0 kata</span>
+                <!-- Real-time Analysis Metrics Grid -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3 bg-slate-950/80 p-4 rounded-xl border border-slate-800 text-xs">
+                    <div class="bg-slate-900/60 p-3 rounded-lg border border-slate-800">
+                        <span class="text-slate-400 block text-[11px] mb-1">Jumlah Kata:</span>
+                        <span id="essay-word-status" class="text-sm font-bold text-white font-mono">0 kata</span>
                     </div>
-                    <div>
-                        <span class="text-slate-400 block">Struktur Paragraf:</span>
-                        <span id="essay-para-status" class="text-sm font-bold text-red-400">Min. 2 Paragraf</span>
+                    <div class="bg-slate-900/60 p-3 rounded-lg border border-slate-800">
+                        <span class="text-slate-400 block text-[11px] mb-1">Struktur Paragraf:</span>
+                        <span id="essay-para-status" class="text-xs font-bold text-red-400"><i class="fa-solid fa-xmark mr-1"></i> Min 2 Paragraf</span>
                     </div>
-                    <div>
-                        <span class="text-slate-400 block">Kosa Kata Kontekstual:</span>
-                        <span id="essay-keywords-status" class="text-sm font-bold text-amber-400">0 / 4 Terpenuhi</span>
+                    <div class="bg-slate-900/60 p-3 rounded-lg border border-slate-800">
+                        <span class="text-slate-400 block text-[11px] mb-1">Kosa Kata Kontekstual:</span>
+                        <span id="essay-keywords-status" class="text-xs font-bold text-amber-400">0 / 4 Terpenuhi</span>
                     </div>
-                    <div>
-                        <span class="text-slate-400 block">Estimasi Skor Writing 2:</span>
-                        <span id="essay-score-est" class="text-sm font-bold text-blue-400">0 / 100</span>
+                    <div class="bg-slate-900/60 p-3 rounded-lg border border-slate-800">
+                        <span class="text-slate-400 block text-[11px] mb-1">Estimasi Nilai Task 2:</span>
+                        <span id="essay-score-est" class="text-sm font-bold text-blue-400 font-mono">0 / 100</span>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION 4: RESULT & EVALUATION SECTION -->
+
+        <!-- ================= SECTION 4: RESULT & EVALUATION SECTION ================= -->
         <section id="section-result" class="tab-content hidden flex flex-col gap-6">
             <!-- Score Card Summary -->
-            <div class="glass-card p-6 rounded-2xl border border-amber-500/40 relative overflow-hidden">
+            <div class="glass-card p-6 lg:p-8 rounded-2xl border border-amber-500/40 relative overflow-hidden shadow-2xl">
                 <div class="absolute -right-10 -bottom-10 opacity-10 text-amber-400 text-9xl pointer-events-none">
                     <i class="fa-solid fa-trophy"></i>
                 </div>
-                <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-                    <div>
-                        <span class="text-amber-400 font-semibold text-xs tracking-wider uppercase">Hasil Evaluasi Ujian</span>
-                        <h2 class="text-2xl lg:text-3xl font-extrabold font-heading text-white mt-1">Laporan Performa TKBI IPDN</h2>
-                        <p class="text-slate-400 text-sm mt-1">Skor Dihitung Berdasarkan Konversi Standar TKBI IPDN (Rentang: 310 - 677 Poin)</p>
+                
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 z-10 relative">
+                    <div class="space-y-2">
+                        <span class="bg-amber-500/20 text-amber-300 font-bold text-xs px-3 py-1 rounded-full border border-amber-500/40 tracking-wider uppercase">Laporan Evaluasi Resmi</span>
+                        <h2 class="text-2xl lg:text-4xl font-black font-heading text-white tracking-tight">Sertifikat Hasil Simulasi TKBI IPDN</h2>
+                        <p class="text-slate-300 text-xs lg:text-sm max-w-xl">
+                            Nilai akhir dihitung secara otomatis menggunakan formula konversi standar TKBI IPDN dalam rentang <strong>310 hingga 677 poin</strong>.
+                        </p>
                     </div>
 
-                    <!-- Big Score Display -->
-                    <div class="bg-gradient-to-tr from-amber-500 to-yellow-300 text-slate-950 rounded-2xl p-6 text-center shadow-xl shadow-amber-500/20 min-w-[200px]">
-                        <span class="text-xs font-bold uppercase tracking-wider block opacity-80">ESTIMASI SKOR TKBI</span>
-                        <span id="total-tkbi-score" class="font-heading font-black text-5xl">310</span>
-                        <span class="text-xs font-bold block mt-1 opacity-90" id="score-predicate">Perlu Peningkatan</span>
+                    <!-- Big Score Display Badge -->
+                    <div class="gold-gradient-bg text-slate-950 rounded-2xl p-6 text-center shadow-2xl shadow-amber-500/30 min-w-[220px] w-full md:w-auto border-2 border-amber-200/60">
+                        <span class="text-[10px] font-black uppercase tracking-widest block text-slate-900 opacity-90">TOTAL SKOR ESTIMASI TKBI</span>
+                        <span id="total-tkbi-score" class="font-heading font-black text-5xl lg:text-6xl tracking-tight text-slate-950 my-1 block">310</span>
+                        <span id="score-predicate" class="text-xs font-extrabold block bg-slate-950 text-amber-300 py-1 px-3 rounded-lg shadow">PERLU PENINGKATAN</span>
                     </div>
                 </div>
 
-                <!-- Score Breakdown Grid -->
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6 border-t border-slate-700/60 pt-6">
-                    <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-800 flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-lg bg-amber-500/20 border border-amber-500/40 text-amber-400 flex items-center justify-center text-xl">
+                <!-- Breakdown Cards Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8 border-t border-slate-800 pt-6">
+                    <!-- Listening Result -->
+                    <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800 flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-amber-500/20 border border-amber-500/40 text-amber-400 flex items-center justify-center text-xl shrink-0">
                             <i class="fa-solid fa-headphones"></i>
                         </div>
                         <div>
-                            <span class="text-slate-400 text-xs block">Listening Score</span>
-                            <span id="score-listening-converted" class="text-xl font-bold text-white">31 / 67</span>
-                            <span id="score-listening-raw" class="text-xs text-slate-500 block">Benar: 0 / 10</span>
+                            <span class="text-slate-400 text-xs font-medium block">Sub-Tes Listening</span>
+                            <span id="score-listening-converted" class="text-xl font-black font-mono text-white">31 / 67</span>
+                            <span id="score-listening-raw" class="text-xs text-slate-400 block font-mono mt-0.5">Benar: 0 / 30 Soal</span>
                         </div>
                     </div>
-                    <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-800 flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-lg bg-blue-500/20 border border-blue-500/40 text-blue-400 flex items-center justify-center text-xl">
+                    <!-- Reading Result -->
+                    <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800 flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/20 border border-blue-500/40 text-blue-400 flex items-center justify-center text-xl shrink-0">
                             <i class="fa-solid fa-book-open"></i>
                         </div>
                         <div>
-                            <span class="text-slate-400 text-xs block">Reading Score</span>
-                            <span id="score-reading-converted" class="text-xl font-bold text-white">31 / 67</span>
-                            <span id="score-reading-raw" class="text-xs text-slate-500 block">Benar: 0 / 10</span>
+                            <span class="text-slate-400 text-xs font-medium block">Sub-Tes Reading</span>
+                            <span id="score-reading-converted" class="text-xl font-black font-mono text-white">31 / 67</span>
+                            <span id="score-reading-raw" class="text-xs text-slate-400 block font-mono mt-0.5">Benar: 0 / 30 Soal</span>
                         </div>
                     </div>
-                    <div class="bg-slate-900/80 p-4 rounded-xl border border-slate-800 flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-lg bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center text-xl">
+                    <!-- Writing Result -->
+                    <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800 flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center text-xl shrink-0">
                             <i class="fa-solid fa-pen-nib"></i>
                         </div>
                         <div>
-                            <span class="text-slate-400 text-xs block">Writing Score</span>
-                            <span id="score-writing-converted" class="text-xl font-bold text-white">31 / 67</span>
-                            <span id="score-writing-raw" class="text-xs text-slate-500 block">Kualitas: 0%</span>
+                            <span class="text-slate-400 text-xs font-medium block">Sub-Tes Writing</span>
+                            <span id="score-writing-converted" class="text-xl font-black font-mono text-white">31 / 67</span>
+                            <span id="score-writing-raw" class="text-xs text-slate-400 block font-mono mt-0.5">Kualitas: 0%</span>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Answer Key & Detailed Explanation Container -->
-            <div class="glass-card p-6 rounded-2xl flex flex-col gap-4">
-                <h3 class="text-lg font-bold font-heading text-amber-400 flex items-center gap-2">
-                    <i class="fa-solid fa-square-poll-vertical"></i> Kunci Jawaban & Pembahasan Detail
-                </h3>
-                <div id="explanation-container" class="flex flex-col gap-4">
-                    <!-- Populated by JS -->
+            <!-- Answer Key & Comprehensive Explanation Section -->
+            <div class="glass-card p-6 lg:p-8 rounded-2xl flex flex-col gap-6 border border-slate-800">
+                <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                    <h3 class="text-xl font-extrabold font-heading text-amber-400 flex items-center gap-2">
+                        <i class="fa-solid fa-square-poll-vertical"></i> Pembahasan Analitis & Kunci Jawaban Lengkap
+                    </h3>
+                    <span class="text-xs text-slate-400 font-mono">Total 60 Soal Multiple Choice</span>
+                </div>
+                
+                <div id="explanation-container" class="flex flex-col gap-6">
+                    <!-- Populated dynamically by JS -->
+                    <div class="text-center text-slate-500 py-8">
+                        <i class="fa-solid fa-lock text-3xl mb-2 block text-slate-600"></i>
+                        <p class="text-sm">Selesaikan ujian dan klik tombol <strong>"Akhiri Ujian & Skor"</strong> untuk membuka seluruh pembahasan rinci.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -338,12 +469,21 @@
     </main>
 
     <!-- Footer -->
-    <footer class="mt-auto border-t border-slate-800 bg-slate-950 py-4 text-center text-slate-500 text-xs">
-        <p>© 2026 Simulasi Interaktif TKBI IPDN — Platform Latihan Resmi Calon Praja IPDN</p>
+    <footer class="mt-auto border-t border-slate-800/80 bg-slate-950 py-6 text-center text-slate-500 text-xs">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-3">
+            <p>© 2026 Simulasi Interaktif TKBI IPDN — Platform Persiapan Calon Praja IPDN</p>
+            <p class="font-mono text-slate-600">Standar Materi Sesuai Kurikulum TKBI Kedinasan</p>
+        </div>
     </footer>
 
+
+    <!-- ================= JAVASCRIPT SIMULATION CORE LOGIC ================= -->
     <script>
-        /* Comprehensive Question Data Structure */
+        /* ==========================================================================
+           1. COMPREHENSIVE QUESTION DATA BANKS (60 MULTIPLE CHOICE + WRITING TASKS)
+           ========================================================================== */
+
+        // 30 LISTENING QUESTIONS (PERCAKAPAN, MONOLOG, DISKUSI)
         const listeningQuestions = [
             {
                 id: "l1",
@@ -351,10 +491,10 @@
                 audioText: "Man: Do you know if the public administration lecture starts at eight or nine tomorrow morning? Woman: The timetable was updated yesterday. It now starts at nine thirty in Hall B.",
                 question: "What does the woman imply about the lecture?",
                 options: [
-                    "It will begin at eight o'clock.",
-                    "It has been postponed to nine thirty.",
-                    "It was canceled yesterday.",
-                    "It takes place in Hall A."
+                    "It will begin at eight o'clock sharp.",
+                    "It has been rescheduled to nine thirty.",
+                    "It was canceled until further notice.",
+                    "It takes place in the main auditorium."
                 ],
                 answer: 1,
                 explanation: "Wanita menyatakan bahwa jadwal telah diperbarui kemarin dan kuliah sekarang dimulai pukul 09.30 di Hall B."
@@ -362,11 +502,11 @@
             {
                 id: "l2",
                 type: "Percakapan Pendek",
-                audioText: "Woman: Has the regional officer submitted the financial report for the new civil service project? Man: Not yet. He requested two additional days to double-check the budget allocation.",
+                audioText: "Woman: Has the regional officer submitted the financial audit report for the new civil project? Man: Not yet. He requested two additional days to double-check the budget allocation.",
                 question: "Why hasn't the regional officer submitted the report?",
                 options: [
-                    "He lost the financial documents.",
-                    "He needs more time to verify the budget.",
+                    "He misplaced the financial documents.",
+                    "He needs more time to verify budget figures.",
                     "The project was rejected by the ministry.",
                     "He is waiting for the rector's approval."
                 ],
@@ -375,8 +515,8 @@
             },
             {
                 id: "l3",
-                type: "Monolog",
-                audioText: "Attention all IPDN cadets. The annual leadership seminar on civil ethics will take place this Thursday at the Main Auditorium. Attendance is mandatory for all final-year cadets. Please bring your official notebooks and wear Uniform Category A.",
+                type: "Monolog Pengumuman",
+                audioText: "Attention all IPDN cadets. The annual leadership seminar on public sector ethics will take place this Thursday at the Main Auditorium. Attendance is mandatory for all final-year cadets. Please bring your official notebooks and wear Uniform Category A.",
                 question: "Who is required to attend the leadership seminar?",
                 options: [
                     "All administrative staff members.",
@@ -385,17 +525,17 @@
                     "Guest lecturers from the Ministry."
                 ],
                 answer: 2,
-                explanation: "Monolog dengan tegas menyampaikan 'Attendance is mandatory for all final-year cadets' (Kehadiran wajib bagi praja tingkat akhir)."
+                explanation: "Monolog secara eksplisit menyampaikan: 'Attendance is mandatory for all final-year cadets'."
             },
             {
                 id: "l4",
-                type: "Monolog",
-                audioText: "Good morning. In today's public policy session, we will examine how digital governance enhances public service efficiency in local municipalities. Digital systems reduce bureaucratic delays and allow citizens to request official permits online.",
-                question: "What is the main advantage of digital governance mentioned in the talk?",
+                type: "Monolog Akademik",
+                audioText: "Good morning. In today's public policy session, we will examine how digital governance enhances service efficiency in regional municipalities. Integrated digital systems reduce bureaucratic delays and allow citizens to apply for official permits online.",
+                question: "What is highlighted as a primary benefit of digital governance?",
                 options: [
-                    "It increases bureaucratic procedures.",
+                    "It increases unnecessary administrative procedures.",
                     "It eliminates the need for municipal officers.",
-                    "It reduces delays and allows online permit applications.",
+                    "It reduces delays and permits online application.",
                     "It focuses solely on financial auditing."
                 ],
                 answer: 2,
@@ -403,55 +543,55 @@
             },
             {
                 id: "l5",
-                type: "Diskusi Panel",
+                type: "Diskusi Panel Kedinasan",
                 audioText: "Dr. Aris: Good afternoon. Today we discuss decentralization policies in regional governance. Professor Maya, how has local autonomy affected civil administration? Prof. Maya: Well, Dr. Aris, local autonomy empowers regional leaders to address community needs faster, although resource allocation remains a critical challenge.",
-                question: "According to Professor Maya, what is a primary benefit of local autonomy?",
+                question: "According to Professor Maya, what is a primary advantage of local autonomy?",
                 options: [
-                    "It centralizes all decision-making in the capital.",
-                    "It enables regional leaders to respond to community needs more quickly.",
-                    "It completely solves financial resource challenges.",
+                    "It centralizes all authority in the national capital.",
+                    "It enables regional leaders to respond to community needs more rapidly.",
+                    "It completely eliminates resource constraints.",
                     "It decreases local administrative responsibility."
                 ],
                 answer: 1,
-                explanation: "Prof. Maya menyebutkan bahwa otonomi daerah memberdayakan pemimpin lokal untuk mengatasi kebutuhan masyarakat secara lebih cepat (faster)."
+                explanation: "Prof. Maya menyebutkan otonomi daerah memberdayakan pemimpin lokal untuk mengatasi kebutuhan masyarakat secara lebih cepat (faster)."
             },
             {
                 id: "l6",
                 type: "Percakapan Pendek",
-                audioText: "Man: Did you hear that the protocol officer was reassigned to the Ministry of Home Affairs? Woman: Yes, he moved there last week to oversee the national civil servant integration program.",
+                audioText: "Man: Did you hear that the protocol officer was reassigned to the Ministry of Home Affairs? Woman: Yes, he relocated there last week to oversee the national civil servant integration program.",
                 question: "Where is the protocol officer currently working?",
                 options: [
                     "At the local municipality office.",
                     "At the Ministry of Home Affairs.",
-                    "At the IPDN research center.",
+                    "At the IPDN research institute.",
                     "At the provincial court."
                 ],
                 answer: 1,
-                explanation: "Wanita mengonfirmasi bahwa ia telah pindah minggu lalu ke Kementerian Dalam Negeri (Ministry of Home Affairs)."
+                explanation: "Wanita mengonfirmasi bahwa officer tersebut telah pindah ke Kementerian Dalam Negeri (Ministry of Home Affairs)."
             },
             {
                 id: "l7",
                 type: "Percakapan Pendek",
-                audioText: "Woman: Should we submit our public administration assignments online or hand in printed copies? Man: Professor Hendra requested digital submissions through the cadet portal before five PM.",
+                audioText: "Woman: Should we submit our public governance assignments in printed format or online? Man: Professor Hendra explicitly requested digital submissions through the cadet portal before five PM.",
                 question: "How should the cadets submit their assignment?",
                 options: [
-                    "By giving printed copies to the professor.",
+                    "By handing printed copies directly.",
                     "By uploading them through the cadet portal.",
-                    "By sending them via email tomorrow morning.",
-                    "By presenting them in class."
+                    "By emailing them tomorrow morning.",
+                    "By presenting them orally in class."
                 ],
                 answer: 1,
                 explanation: "Pria tersebut menyebutkan bahwa profesor meminta pengumpulan secara digital lewat portal praja."
             },
             {
                 id: "l8",
-                type: "Monolog",
-                audioText: "The campus library will adjust its operating hours during the examination period. Starting Monday, the library will remain open until ten PM on weekdays, providing additional quiet study areas for all students.",
-                question: "Why are the library hours being extended?",
+                type: "Monolog Pengumuman",
+                audioText: "The campus library will adjust its operating hours during the examination period. Starting Monday, the library will remain open until ten PM on weekdays, providing quiet study areas for all students.",
+                question: "Why are the library operating hours extended?",
                 options: [
-                    "Due to campus renovation.",
-                    "To accommodate students during exams.",
-                    "Because of a staff scheduling change.",
+                    "Due to structural building renovations.",
+                    "To accommodate cadets during examination weeks.",
+                    "Because of staffing adjustments.",
                     "To host evening leadership seminars."
                 ],
                 answer: 1,
@@ -459,34 +599,316 @@
             },
             {
                 id: "l9",
-                type: "Diskusi Panel",
-                audioText: "Officer 1: We need to improve civil servant training programs this semester. Officer 2: I agree. Incorporating modern governance software will better prepare cadets for real-world municipal challenges.",
-                question: "What suggestion is made to improve the training program?",
+                type: "Diskusi Panel Kedinasan",
+                audioText: "Officer 1: We need to modernize our civil servant training curriculum this semester. Officer 2: I agree. Incorporating modern governance software will better prepare cadets for municipal challenges.",
+                question: "What recommendation is proposed for the training program?",
                 options: [
-                    "Reducing training hours.",
-                    "Introducing modern governance software.",
-                    "Focusing only on physical training.",
-                    "Canceling the municipal internships."
+                    "Reducing overall course duration.",
+                    "Integrating modern governance software.",
+                    "Focusing exclusively on physical drills.",
+                    "Canceling administrative internships."
                 ],
                 answer: 1,
-                explanation: "Petugas 2 merekomendasikan penggabungan software tata kelola modern ke dalam program pelatihan."
+                explanation: "Officer 2 merekomendasikan penggabungan software tata kelola modern ke dalam kurikulum pelatihan."
             },
             {
                 id: "l10",
-                type: "Monolog",
-                audioText: "To maintain discipline within the institute, all cadets must strictly adhere to the designated dress code during official parade ceremonies. Unprepared cadets will face administrative sanctions.",
-                question: "What will happen to cadets who do not comply with the uniform policy?",
+                type: "Monolog Kedisiplinan",
+                audioText: "To maintain discipline within the academy, all cadets must strictly adhere to the designated dress code during official parade ceremonies. Unprepared cadets will face administrative disciplinary sanctions.",
+                question: "What consequence awaits cadets who violate the dress code?",
                 options: [
-                    "They will receive additional academic credits.",
-                    "They will be awarded merit points.",
+                    "They will receive extra credit.",
+                    "They will be awarded merit badges.",
                     "They will face administrative sanctions.",
-                    "They will be assigned as ceremony leaders."
+                    "They will lead the next parade."
                 ],
                 answer: 2,
-                explanation: "Monolog secara eksplisit menyatakan 'Unprepared cadets will face administrative sanctions'."
+                explanation: "Monolog secara tegas menyatakan: 'Unprepared cadets will face administrative sanctions'."
+            },
+            {
+                id: "l11",
+                type: "Percakapan Pendek",
+                audioText: "Man: Was the regional workshop on public transparency well-attended yesterday? Woman: Absolutely. Over two hundred civil servants participated in the full day session.",
+                question: "What does the woman say about the workshop?",
+                options: [
+                    "It was canceled due to low turnout.",
+                    "It was attended by over 200 civil servants.",
+                    "It lasted only for one hour.",
+                    "It was restricted to IPDN professors."
+                ],
+                answer: 1,
+                explanation: "Wanita mengonfirmasi bahwa lebih dari 200 pegawai negeri menghadiri workshop tersebut."
+            },
+            {
+                id: "l12",
+                type: "Percakapan Pendek",
+                audioText: "Woman: Could you help me locate the archives for last year's municipal development projects? Man: They are stored in Room 302 on the third floor of the Administration Building.",
+                question: "Where can the archives be found?",
+                options: [
+                    "In Room 302 on the third floor.",
+                    "In the main campus library basement.",
+                    "At the regional governor's office.",
+                    "In the digital repository only."
+                ],
+                answer: 0,
+                explanation: "Arsip disimpan di Ruang 302 di lantai 3 Gedung Administrasi."
+            },
+            {
+                id: "l13",
+                type: "Monolog Instruksi",
+                audioText: "Before submitting your research proposal on public policy reform, ensure that all references follow the standard APA citation style. Submissions lacking proper citations will be returned for revision.",
+                question: "What requirement is highlighted for the research proposal?",
+                options: [
+                    "It must be typed in red font.",
+                    "It must adhere to APA citation style.",
+                    "It must be under 500 words.",
+                    "It must include financial receipts."
+                ],
+                answer: 1,
+                explanation: "Instruksi mewajibkan pemakaian standar sitasi APA (APA citation style)."
+            },
+            {
+                id: "l14",
+                type: "Diskusi Panel Kedinasan",
+                audioText: "Panelist A: Managing urban waste requires close cooperation between local government and community leaders. Panelist B: Exactly. Public participation is just as critical as government infrastructure funding.",
+                question: "What do both panelists agree upon regarding urban waste management?",
+                options: [
+                    "Only government funding matters.",
+                    "Public participation is vital alongside infrastructure.",
+                    "Waste management should be privatized completely.",
+                    "Local communities should handle it without government help."
+                ],
+                answer: 1,
+                explanation: "Kedua panelis sepakat bahwa partisipasi masyarakat sama pentingnya dengan infrastruktur pemerintah."
+            },
+            {
+                id: "l15",
+                type: "Percakapan Pendek",
+                audioText: "Man: Do you think the new civil service appraisal system is fair? Woman: It certainly focuses more on measurable performance outcomes rather than seniority.",
+                question: "What feature of the new appraisal system does the woman highlight?",
+                options: [
+                    "It relies strictly on seniority.",
+                    "It emphasizes measurable performance outcomes.",
+                    "It eliminates monthly evaluations.",
+                    "It is managed by external consultants."
+                ],
+                answer: 1,
+                explanation: "Wanita menyoroti bahwa sistem penilaian baru berfokus pada hasil kinerja yang terukur (measurable performance outcomes)."
+            },
+            {
+                id: "l16",
+                type: "Monolog Pengumuman",
+                audioText: "Cadets participating in the regional community service program must register their teams with the student affairs office before Friday at four PM.",
+                question: "What must cadets do before Friday at 4 PM?",
+                options: [
+                    "Complete their final exams.",
+                    "Register their community service teams.",
+                    "Submit their graduation thesis.",
+                    "Pay the semester tuition fee."
+                ],
+                answer: 1,
+                explanation: "Praja harus mendaftarkan tim pengabdian masyarakat sebelum tenggat waktu hari Jumat jam 4 sore."
+            },
+            {
+                id: "l17",
+                type: "Percakapan Pendek",
+                audioText: "Woman: Has the Ministry approved the budget for our regional infrastructure study? Man: Yes, the funds were allocated yesterday, so we can begin field research next week.",
+                question: "What does the man indicate about the research project?",
+                options: [
+                    "Budget approval was rejected.",
+                    "Field research can start next week due to funding allocation.",
+                    "The study has been postponed indefinitely.",
+                    "More research staff must be hired first."
+                ],
+                answer: 1,
+                explanation: "Pria mengindikasikan bahwa dana sudah dialokasikan sehingga riset lapangan bisa dimulai minggu depan."
+            },
+            {
+                id: "l18",
+                type: "Diskusi Panel Kedinasan",
+                audioText: "Dr. Maya: E-government platforms must prioritize data security to maintain public trust. Officer Danu: Indeed. Protecting citizen personal data against cyber threats is paramount.",
+                question: "What primary concern is raised regarding e-government platforms?",
+                options: [
+                    "High operational costs.",
+                    "Data security and cybersecurity threats.",
+                    "Lack of internet connectivity.",
+                    "Complicated user interface design."
+                ],
+                answer: 1,
+                explanation: "Isu utama yang diangkat adalah keamanan data (data security) dari ancaman siber."
+            },
+            {
+                id: "l19",
+                type: "Percakapan Pendek",
+                audioText: "Man: Where is the annual civil ethics symposium being held this year? Woman: It was moved from Bandung to the IPDN Central Campus in Jatinangor.",
+                question: "Where will the symposium take place?",
+                options: [
+                    "At Bandung City Hall.",
+                    "At the IPDN Central Campus in Jatinangor.",
+                    "At the Ministry in Jakarta.",
+                    "At a hotel in Yogyakarta."
+                ],
+                answer: 1,
+                explanation: "Simposium dipindahkan ke Kampus Pusat IPDN Jatinangor."
+            },
+            {
+                id: "l20",
+                type: "Monolog Akademik",
+                audioText: "Public sector financial auditing requires strict adherence to transparency laws. Auditing officers must verify every expenditure receipt against authorized government budget line items.",
+                question: "What is required of public auditing officers?",
+                options: [
+                    "To create new budget categories.",
+                    "To verify expenditure receipts against authorized budgets.",
+                    "To delegate audit duties to private firms.",
+                    "To conduct audits once every five years."
+                ],
+                answer: 1,
+                explanation: "Auditor harus memverifikasi setiap kuitansi pengeluaran terhadap pos anggaran yang sah."
+            },
+            {
+                id: "l21",
+                type: "Percakapan Pendek",
+                audioText: "Woman: I heard the guest lecture on international diplomacy was inspiring. Man: It certainly was! Ambassador Hendra shared valuable insights on bilateral public administration.",
+                question: "What was the topic of the guest lecture?",
+                options: [
+                    "Local agricultural techniques.",
+                    "Bilateral public administration and diplomacy.",
+                    "Academy sports management.",
+                    "Military strategy."
+                ],
+                answer: 1,
+                explanation: "Kuliah tamu membahas tata kelola publik bilateral dan diplomasi internasional."
+            },
+            {
+                id: "l22",
+                type: "Monolog Pengumuman",
+                audioText: "Notice to all civil service trainees: health screening examinations will take place at the campus clinic starting tomorrow at seven AM. Please bring your medical registration cards.",
+                question: "What must trainees bring to the health screening?",
+                options: [
+                    "Their academic transcripts.",
+                    "Their medical registration cards.",
+                    "Their personal laptops.",
+                    "Proof of tuition payment."
+                ],
+                answer: 1,
+                explanation: "Peserta wajib membawa kartu registrasi medis (medical registration cards)."
+            },
+            {
+                id: "l23",
+                type: "Percakapan Pendek",
+                audioText: "Man: Will the new civil registry software be operational by next month? Woman: Yes, the technical IT team completed system testing yesterday.",
+                question: "What is the status of the civil registry software?",
+                options: [
+                    "Testing is complete and it will be operational next month.",
+                    "Development has been canceled.",
+                    "Testing will begin next year.",
+                    "It needs additional financial funding."
+                ],
+                answer: 0,
+                explanation: "Pengujian sistem telah selesai dan akan siap beroperasi bulan depan."
+            },
+            {
+                id: "l24",
+                type: "Diskusi Panel Kedinasan",
+                audioText: "Officer A: Emergency disaster management requires rapid inter-agency communication. Officer B: Absolutely. Establishing unified communication protocols saves critical time during crises.",
+                question: "What is necessary for effective emergency disaster management?",
+                options: [
+                    "Unified inter-agency communication protocols.",
+                    "Slower decision-making processes.",
+                    "Isolated municipal operations.",
+                    "Decreasing personnel training."
+                ],
+                answer: 0,
+                explanation: "Diperlukan protokol komunikasi antar-lembaga yang terpadu dan cepat."
+            },
+            {
+                id: "l25",
+                type: "Monolog Instruksi",
+                audioText: "All cadets participating in the parade drill must assemble at the main parade square precisely at six sharp. Tardiness will result in disciplinary demerits.",
+                question: "When must cadets assemble at the parade square?",
+                options: [
+                    "At 6:30 AM.",
+                    "Precisely at 6:00 AM.",
+                    "At 7:00 AM.",
+                    "At noon."
+                ],
+                answer: 1,
+                explanation: "Praja wajib berkumpul tepat pukul 06.00 pagi (six sharp)."
+            },
+            {
+                id: "l26",
+                type: "Percakapan Pendek",
+                audioText: "Woman: Did Professor Santi approve your policy analysis paper? Man: She asked me to revise the comparative section on regional autonomy before final submission.",
+                question: "What did the professor request?",
+                options: [
+                    "To reject the paper completely.",
+                    "To revise the comparative section on regional autonomy.",
+                    "To submit the paper to a journal immediately.",
+                    "To shorten the document to one page."
+                ],
+                answer: 1,
+                explanation: "Profesor meminta revisi pada bagian komparatif otonomi daerah."
+            },
+            {
+                id: "l27",
+                type: "Monolog Pengumuman",
+                audioText: "The Ministry of Home Affairs announces a national essay competition on innovative public governance. Submissions are open to all civil service cadets until October 30th.",
+                question: "Who is eligible to participate in the essay competition?",
+                options: [
+                    "High school students.",
+                    "All civil service cadets.",
+                    "Foreign diplomats only.",
+                    "Retired government officials."
+                ],
+                answer: 1,
+                explanation: "Kompetisi terbuka bagi seluruh praja/taruna kedinasan (all civil service cadets)."
+            },
+            {
+                id: "l28",
+                type: "Percakapan Pendek",
+                audioText: "Man: Should we hold the regional coordinator meeting in Person or via Video Conference? Woman: Due to travel constraints, the director advised us to host it via Video Conference.",
+                question: "How will the meeting be conducted?",
+                options: [
+                    "In person at headquarters.",
+                    "Via Video Conference.",
+                    "By exchanging official letters.",
+                    "It will be postponed to next year."
+                ],
+                answer: 1,
+                explanation: "Rapat diselenggarakan via Video Conference karena kendala perjalanan."
+            },
+            {
+                id: "l29",
+                type: "Diskusi Panel Kedinasan",
+                audioText: "Dr. Budi: Public accountability is strengthened when municipal financial records are accessible online. Ms. Lina: Agreed. Transparency fosters public confidence in local government.",
+                question: "What builds public confidence in local government?",
+                options: [
+                    "Secret financial auditing.",
+                    "Transparency through online access to financial records.",
+                    "Increasing tax tariffs without notice.",
+                    "Reducing public consultation sessions."
+                ],
+                answer: 1,
+                explanation: "Transparansi akses laporan keuangan secara daring meningkatkan kepercayaan publik."
+            },
+            {
+                id: "l30",
+                type: "Monolog Kedisiplinan",
+                audioText: "Cadets are reminded that unauthorized leave during active semester term is strictly forbidden. Violations will lead to suspension from academic activities.",
+                question: "What is the penalty for unauthorized leave?",
+                options: [
+                    "A verbal warning only.",
+                    "Suspension from academic activities.",
+                    "Exemption from final exams.",
+                    "A minor monetary fine."
+                ],
+                answer: 1,
+                explanation: "Sanksi untuk izin tanpa otorisasi adalah skorsing dari kegiatan akademik."
             }
         ];
 
+
+        // 30 READING, STRUCTURE & VOCABULARY QUESTIONS
         const readingQuestions = [
             {
                 id: "r1",
@@ -494,18 +916,18 @@
                 text: "NOTICE: Official clearance forms must be verified by the Department of Civil Affairs prior to entering the high-security administrative hall. Unauthorized entry is strictly prohibited under Regulation No. 12/2024.",
                 question: "What is the primary message of this notice?",
                 options: [
-                    "Visitors can enter the hall freely.",
-                    "Clearance forms require verification before entry.",
-                    "The administrative hall is closed for maintenance.",
-                    "Regulation No. 12/2024 has been repealed."
+                    "Visitors may enter the administrative hall without restriction.",
+                    "Clearance forms require verification before entering the hall.",
+                    "The administrative hall is closed permanently for maintenance.",
+                    "Regulation No. 12/2024 has been officially repealed."
                 ],
                 answer: 1,
-                explanation: "Notice menegaskan bahwa formulir verifikasi harus disahkan sebelum memasuki ruang administrasi berkeamanan tinggi."
+                explanation: "Notice menegaskan formulir verifikasi harus disahkan sebelum memasuki ruang administrasi berkeamanan tinggi."
             },
             {
                 id: "r2",
                 category: "Notice & Short Message",
-                text: "MEMO: All department heads are requested to submit their quarterly budget proposals by Friday at 3:00 PM. Submissions received after the deadline will not be processed until the next fiscal review.",
+                text: "MEMO: All department heads are requested to submit quarterly budget proposals by Friday at 3:00 PM. Submissions received after the deadline will not be processed until the next fiscal review.",
                 question: "What happens if a budget proposal is submitted late?",
                 options: [
                     "It will be rejected permanently.",
@@ -518,11 +940,11 @@
             },
             {
                 id: "r3",
-                category: "Reading Article",
+                category: "Artikel Publik",
                 text: "Public administration in modern governance plays a pivotal role in bridging policy formulation and practical implementation. Effective administrators ensure that public resources are distributed equitably across various regional territories. Furthermore, the integration of digital tools enhances transparency, allowing citizens to monitor government expenditure and service delivery in real time.",
                 question: "According to the passage, what is one major benefit of integrating digital tools in public administration?",
                 options: [
-                    "It decreases public participation.",
+                    "It decreases citizen engagement.",
                     "It allows citizens to monitor government expenditure.",
                     "It eliminates the need for public policy.",
                     "It increases administrative operational costs."
@@ -532,7 +954,7 @@
             },
             {
                 id: "r4",
-                category: "Reading Article",
+                category: "Artikel Kebijakan",
                 text: "Effective regional leadership requires a balance between strict adherence to statutory guidelines and flexible problem-solving skills. Leaders who foster collaboration with local stakeholders tend to achieve higher administrative efficiency than those who rely solely on top-down directives.",
                 question: "The word 'foster' in the text is closest in meaning to:",
                 options: [
@@ -542,21 +964,21 @@
                     "Terminate"
                 ],
                 answer: 1,
-                explanation: "'Foster' bermakna mendorong/memelihara (encourage and nurture) hubungan kerja sama."
+                explanation: "'Foster' bermakna mendorong, membina, dan memelihara (encourage and nurture) kerja sama."
             },
             {
                 id: "r5",
-                category: "Opinion & Essay",
-                text: "Op-Ed: Modernizing the civil service system in developing nations requires more than just technological upgrades; it demands a fundamental shift in institutional culture. Without rigorous ethical training and continuous accountability mechanisms, digital innovations will fail to eliminate corruption or administrative inefficiency.",
-                question: "What is the author's main argument regarding civil service modernization?",
+                category: "Opini Kebijakan",
+                text: "Op-Ed: Modernizing the civil service system in developing nations requires more than technological upgrades; it demands a fundamental shift in institutional culture. Without rigorous ethical training and continuous accountability mechanisms, digital innovations will fail to eliminate corruption or administrative inefficiency.",
+                question: "What is the author's primary argument regarding civil service modernization?",
                 options: [
                     "Technological upgrades alone are sufficient for modernization.",
                     "Ethical training and accountability are crucial alongside technology.",
                     "Digital tools inevitably increase corruption.",
-                    "Institutional culture cannot be changed."
+                    "Institutional culture cannot be altered."
                 ],
                 answer: 1,
-                explanation: "Penulis berargumen bahwa modernisasi membutuhkan perubahan budaya institusional, pelatihan etika, dan akuntabilitas, bukan hanya teknologi."
+                explanation: "Penulis berargumen bahwa modernisasi membutuhkan perubahan budaya institusional, pelatihan etika, dan akuntabilitas, bukan sekadar teknologi."
             },
             {
                 id: "r6",
@@ -570,7 +992,7 @@
                     "would arrive"
                 ],
                 answer: 1,
-                explanation: "Kalimat ini adalah Third Conditional (pengandaian masa lalu): 'If + Past Perfect (had arrived), would have + V3'."
+                explanation: "Kalimat pengandaian tipe 3 (Third Conditional): 'If + Past Perfect (had arrived), would have + V3'."
             },
             {
                 id: "r7",
@@ -578,17 +1000,17 @@
                 text: "The new civil service guidelines, along with the updated training manual, _____ distributed to all administrative officers yesterday.",
                 question: "Choose the correct verb to complete the sentence:",
                 options: [
-                    "was",
                     "were",
+                    "was",
                     "are",
                     "been"
                 ],
                 answer: 0,
-                explanation: "Subjek utama adalah 'The new civil service guidelines' yang dipisahkan frasa 'along with...', namun tata bahasa formal mengacu pada 'guidelines' (jamak -> were) atau jika memandang paket kebijakan singular. Namun dalam konteks standar TOEFL/TKBI, 'guidelines' (plural) menggunakan 'were'."
+                explanation: "Subjek 'guidelines' berbentuk plural. Frasa pendamping 'along with...' tidak mengubah sifat plural subjek utama ('were distributed')."
             },
             {
                 id: "r8",
-                category: "Vocabulary & Idiom",
+                category: "Vocabulary in Context",
                 text: "The committee decided to _____ the official meeting until all regional representatives arrived.",
                 question: "Choose the word that best completes the sentence:",
                 options: [
@@ -598,7 +1020,7 @@
                     "terminate"
                 ],
                 answer: 0,
-                explanation: "'Postpone' berarti menunda rapat sampai semua perwakilan daerah tiba."
+                explanation: "'Postpone' berarti menunda rapat sampai seluruh perwakilan daerah hadir."
             },
             {
                 id: "r9",
@@ -612,12 +1034,12 @@
                     "was"
                 ],
                 answer: 0,
-                explanation: "Inversi setelah 'Not only': 'Not only + auxiliary verb (did) + subject + verb'."
+                explanation: "Bentuk inversi setelah 'Not only': 'Not only + auxiliary verb (did) + subject + verb'."
             },
             {
                 id: "r10",
                 category: "Vocabulary in Context",
-                text: "The minister emphasized the need for 'meticulous' planning before deploying civil officers to remote areas.",
+                text: "The minister emphasized the need for 'meticulous' planning before deploying civil officers to remote border areas.",
                 question: "What does the word 'meticulous' mean in this context?",
                 options: [
                     "Hasty and careless",
@@ -627,8 +1049,293 @@
                 ],
                 answer: 1,
                 explanation: "'Meticulous' berarti sangat teliti, cermat, dan presisi (extremely careful and precise)."
+            },
+            {
+                id: "r11",
+                category: "Notice & Short Message",
+                text: "NOTICE: All vehicle owners parking in the administrative quadrangle must display a valid institutional permit on the windshield. Unpermitted vehicles will be towed at the owner's expense.",
+                question: "What will happen to vehicles parked without a valid permit?",
+                options: [
+                    "They will receive a verbal warning.",
+                    "They will be towed at the owner's expense.",
+                    "They will be granted temporary passes.",
+                    "They will be registered automatically."
+                ],
+                answer: 1,
+                explanation: "Kendaraan tanpa izin valid akan diderek atas biaya pemilik (towed at owner's expense)."
+            },
+            {
+                id: "r12",
+                category: "Artikel Kebijakan",
+                text: "Decentralization aims to transfer administrative authority from central government to local municipalities. This policy empowers regional authorities to tailor public services according to local demographics and economic conditions.",
+                question: "What is the main objective of decentralization mentioned in the passage?",
+                options: [
+                    "To centralize administrative authority in capital cities.",
+                    "To transfer authority so local services can fit regional needs.",
+                    "To eliminate regional governance structures.",
+                    "To increase national tax rates."
+                ],
+                answer: 1,
+                explanation: "Tujuan desentralisasi adalah mentransfer wewenang agar layanan publik disesuaikan dengan kebutuhan daerah."
+            },
+            {
+                id: "r13",
+                category: "Grammar & Structure",
+                text: "Neither the regional director nor the departmental heads _____ present at yesterday's emergency briefing.",
+                question: "Choose the correct verb to complete the sentence:",
+                options: [
+                    "was",
+                    "were",
+                    "is",
+                    "are"
+                ],
+                answer: 1,
+                explanation: "Aturan 'Neither... nor...': kata kerja menyesuaikan subjek terdekat ('departmental heads' -> plural -> 'were')."
+            },
+            {
+                id: "r14",
+                category: "Grammar & Structure",
+                text: "By the time the new administrative reform takes effect next year, the committee _____ its evaluation for six months.",
+                question: "Choose the correct future perfect continuous form:",
+                options: [
+                    "will have been conducting",
+                    "has conducted",
+                    "conducted",
+                    "is conducting"
+                ],
+                answer: 0,
+                explanation: "Penggunaan Future Perfect Continuous: 'will have been conducting'."
+            },
+            {
+                id: "r15",
+                category: "Vocabulary in Context",
+                text: "The governor praised the civil officer for her 'exemplary' service during the emergency flood response.",
+                question: "The word 'exemplary' is closest in meaning to:",
+                options: [
+                    "Mediocre",
+                    "Outstanding & Worthy of imitation",
+                    "Negligent",
+                    "Ordinary"
+                ],
+                answer: 1,
+                explanation: "'Exemplary' berarti teladan/sangat luar biasa dan patut dicontoh (outstanding and worthy of imitation)."
+            },
+            {
+                id: "r16",
+                category: "Notice & Short Message",
+                text: "URGENT MEMO: All staff must update their digital security passwords prior to the system audit on Friday. Failure to comply will result in account suspension.",
+                question: "What must staff do before Friday's system audit?",
+                options: [
+                    "Submit financial logs.",
+                    "Update their digital security passwords.",
+                    "Attend a physical training session.",
+                    "Request new official badges."
+                ],
+                answer: 1,
+                explanation: "Pegawai diwajibkan memperbarui kata sandi keamanan digital sebelum audit sistem."
+            },
+            {
+                id: "r17",
+                category: "Artikel Kebijakan",
+                text: "Public sector innovation requires fostering an environment where civil servants are encouraged to propose novel solutions. Administrative rigidity often stifles creativity and delays necessary institutional reforms.",
+                question: "According to the passage, what effect does administrative rigidity have?",
+                options: [
+                    "It promotes creative problem solving.",
+                    "It stifles creativity and delays reforms.",
+                    "It reduces operational expenses.",
+                    "It improves public satisfaction."
+                ],
+                answer: 1,
+                explanation: "Kekakuan administrasi (rigidity) menghambat kreativitas dan menunda reformasi institusi."
+            },
+            {
+                id: "r18",
+                category: "Grammar & Structure",
+                text: "The report on municipal infrastructure, _____ was prepared by senior cadets, received praise from the governor.",
+                question: "Choose the correct relative pronoun:",
+                options: [
+                    "which",
+                    "whom",
+                    "whose",
+                    "where"
+                ],
+                answer: 0,
+                explanation: "Kata ganti relatif untuk benda/laporan dalam non-defining clause adalah 'which'."
+            },
+            {
+                id: "r19",
+                category: "Grammar & Structure",
+                text: "Had the administration _____ the security protocols, the data breach could have been prevented.",
+                question: "Choose the correct verb form for the inverted conditional:",
+                options: [
+                    "strengthened",
+                    "strengthen",
+                    "strengthens",
+                    "strengthening"
+                ],
+                answer: 0,
+                explanation: "Bentuk inversi conditional type 3: 'Had + subject + V3 (strengthened)'."
+            },
+            {
+                id: "r20",
+                category: "Vocabulary in Context",
+                text: "The regional assembly voted to 'repeal' the outdated zoning regulation passed in 1995.",
+                question: "What does 'repeal' mean in this context?",
+                options: [
+                    "To officially cancel or revoke a law",
+                    "To enforce strictly",
+                    "To duplicate",
+                    "To publish in news outlets"
+                ],
+                answer: 0,
+                explanation: "'Repeal' berarti mencabut atau membatalkan hukum/peraturan secara resmi."
+            },
+            {
+                id: "r21",
+                category: "Artikel Publik",
+                text: "E-governance initiatives in Indonesia have significantly improved service delivery in rural districts. By establishing online portals, citizens can now request birth certificates and land permits without traveling long distances to provincial capitals.",
+                question: "What benefit of e-governance is specifically mentioned for rural citizens?",
+                options: [
+                    "Free internet access for all households.",
+                    "Requesting permits online without long travel.",
+                    "Exemption from all local taxes.",
+                    "Direct employment in municipal offices."
+                ],
+                answer: 1,
+                explanation: "Warga desa dapat mengajukan izin dan akta secara daring tanpa perlu bepergian jauh."
+            },
+            {
+                id: "r22",
+                category: "Grammar & Structure",
+                text: "The cadet performed his duties _____ than expected during the national simulation drill.",
+                question: "Choose the correct comparative form:",
+                options: [
+                    "more efficiently",
+                    "efficient",
+                    "most efficient",
+                    "efficiency"
+                ],
+                answer: 0,
+                explanation: "Bentuk komparatif kata kerja (performed) menggunakan adverb: 'more efficiently'."
+            },
+            {
+                id: "r23",
+                category: "Grammar & Structure",
+                text: "Despite _____ facing severe budget cuts, the department managed to complete the public housing project.",
+                question: "Choose the correct prepositional structure:",
+                options: [
+                    "facing",
+                    "faced",
+                    "faces",
+                    "to face"
+                ],
+                answer: 0,
+                explanation: "Setelah kata depan 'Despite', kata kerja berbentuk Gerund (V-ing): 'Despite facing'."
+            },
+            {
+                id: "r24",
+                category: "Vocabulary in Context",
+                text: "Inter-agency cooperation is 'paramount' when responding to natural disasters across provincial borders.",
+                question: "The word 'paramount' is closest in meaning to:",
+                options: [
+                    "Of supreme importance",
+                    "Irrelevant",
+                    "Secondary",
+                    "Optional"
+                ],
+                answer: 0,
+                explanation: "'Paramount' berarti sangat penting / terpenting (of supreme importance)."
+            },
+            {
+                id: "r25",
+                category: "Opini Kebijakan",
+                text: "Op-Ed: A robust civil service requires continuous merit-based promotion mechanisms. When appointments are influenced by nepotism rather than competence, public administration loses effectiveness and public trust erodes.",
+                question: "What compromises public administration effectiveness according to the author?",
+                options: [
+                    "Merit-based promotions.",
+                    "Appointments based on nepotism rather than competence.",
+                    "Continuous professional training.",
+                    "Public transparency portals."
+                ],
+                answer: 1,
+                explanation: "Penangkatan pegawai berdasarkan nepotisme alih-alih kompetensi merusak efektivitas administrasi."
+            },
+            {
+                id: "r26",
+                category: "Grammar & Structure",
+                text: "Scarcely had the protocol officer arrived at the summit _____ the opening ceremony began.",
+                question: "Choose the correct conjunction for the inverted structure:",
+                options: [
+                    "when",
+                    "than",
+                    "then",
+                    "where"
+                ],
+                answer: 0,
+                explanation: "Pasangan inversi 'Scarcely / Hardly... when...' ('Scarcely had... when...')."
+            },
+            {
+                id: "r27",
+                category: "Vocabulary in Context",
+                text: "The new regional directive aims to 'streamline' administrative workflows by removing redundant approval layers.",
+                question: "What does 'streamline' mean in this sentence?",
+                options: [
+                    "To make a process simpler and more efficient",
+                    "To make a process more complicated",
+                    "To delay decisions intentionally",
+                    "To increase operational paperwork"
+                ],
+                answer: 0,
+                explanation: "'Streamline' berarti menyederhanakan dan meningkatkan efisiensi alur kerja."
+            },
+            {
+                id: "r28",
+                category: "Artikel Kebijakan",
+                text: "Transparency in public procurement is crucial to prevent corruption. Electronic procurement portals allow public scrutiny of government contracts, ensuring fair bidding processes for vendors.",
+                question: "How do electronic procurement portals prevent corruption?",
+                options: [
+                    "By eliminating vendors completely.",
+                    "By enabling public scrutiny of bidding processes.",
+                    "By hiding government contract details.",
+                    "By bypassing legislative oversight."
+                ],
+                answer: 1,
+                explanation: "Portal pengadaan elektronik memungkinkan pengawasan publik terhadap proses lelang."
+            },
+            {
+                id: "r29",
+                category: "Grammar & Structure",
+                text: "It is essential that every civil officer _____ the ethical code of conduct at all times.",
+                question: "Choose the correct subjunctive verb form:",
+                options: [
+                    "observe",
+                    "observes",
+                    "observed",
+                    "is observing"
+                ],
+                answer: 0,
+                explanation: "Penggunaan Subjunctive Mood ('It is essential that + subject + base verb (observe)')."
+            },
+            {
+                id: "r30",
+                category: "Vocabulary in Context",
+                text: "The financial auditor discovered several 'discrepancies' between the reported expense logs and actual bank receipts.",
+                question: "The word 'discrepancies' means:",
+                options: [
+                    "Inconsistencies or disagreements between facts",
+                    "Exact matches",
+                    "Official approvals",
+                    "Financial bonuses"
+                ],
+                answer: 0,
+                explanation: "'Discrepancies' berarti ketidakcocokan / perbedaan antara data (inconsistencies)."
             }
         ];
+
+
+        /* ==========================================================================
+           2. GLOBAL STATE VARIABLES & TIMER CONTROL
+           ========================================================================== */
 
         let currentTab = 'listening';
         let userAnswers = {
@@ -640,7 +1347,7 @@
             essay: 0
         };
 
-        // Exam Timer Logic (Total 90 minutes = 5400 seconds)
+        // Exam Timer: 90 Minutes Total = 5400 Seconds
         let totalTimeSeconds = 90 * 60;
         let timerInterval = null;
 
@@ -648,8 +1355,8 @@
             timerInterval = setInterval(() => {
                 if (totalTimeSeconds <= 0) {
                     clearInterval(timerInterval);
+                    alert("Waktu Ujian Simulasi TKBI Telah Habis!");
                     finishExam();
-                    alert("Waktu ujian telah habis!");
                     return;
                 }
                 totalTimeSeconds--;
@@ -665,71 +1372,95 @@
                 `${String(hrs).padStart(2, '0')}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
         }
 
-        /* Web Speech API (Audio Synthesis for Listening) */
+
+        /* ==========================================================================
+           3. WEB SPEECH API (NATIVE SYNTHESIS FOR LISTENING AUDIO)
+           ========================================================================== */
+
         function playAudio(text, btnElement) {
             if (!('speechSynthesis' in window)) {
-                alert("Browser Anda tidak mendukung Text-To-Speech. Silakan gunakan Google Chrome atau Microsoft Edge.");
+                alert("Browser Anda tidak mendukung Web Speech API audio synthesis. Disarankan menggunakan Google Chrome atau Microsoft Edge.");
                 return;
             }
 
-            // Stop any ongoing speech
+            // Cancel any ongoing speech
             window.speechSynthesis.cancel();
 
             const utterance = new SpeechSynthesisUtterance(text);
             utterance.lang = 'en-US';
-            utterance.rate = 0.9; // Slight slow for clarity
+            utterance.rate = 0.88; // Slightly slower pace for standard exam clarity
+            utterance.pitch = 1.0;
 
-            // Visual Feedback on Button
             const originalHTML = btnElement.innerHTML;
             btnElement.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Memutar Audio...`;
-            btnElement.classList.add('bg-amber-600');
+            btnElement.classList.add('bg-amber-600', 'ring-2', 'ring-amber-300');
 
             utterance.onend = () => {
                 btnElement.innerHTML = originalHTML;
-                btnElement.classList.remove('bg-amber-600');
+                btnElement.classList.remove('bg-amber-600', 'ring-2', 'ring-amber-300');
             };
 
             utterance.onerror = () => {
                 btnElement.innerHTML = originalHTML;
-                btnElement.classList.remove('bg-amber-600');
+                btnElement.classList.remove('bg-amber-600', 'ring-2', 'ring-amber-300');
             };
 
             window.speechSynthesis.speak(utterance);
         }
 
+
+        /* ==========================================================================
+           4. DYNAMIC SECTION RENDERING LOGIC
+           ========================================================================== */
+
+        // Render Listening Questions and Jump Navigator
         function renderListeningSection() {
             const container = document.getElementById('listening-questions-container');
+            const navContainer = document.getElementById('listening-navigator');
             container.innerHTML = '';
+            navContainer.innerHTML = '';
 
             listeningQuestions.forEach((q, index) => {
+                // Quick Navigator Button
+                const navBtn = document.createElement('button');
+                navBtn.id = `nav-l-${q.id}`;
+                navBtn.onclick = () => scrollToElement(`card-l-${q.id}`);
+                navBtn.className = "w-7 h-7 rounded-lg bg-slate-900 border border-slate-700 text-[11px] font-mono font-bold text-slate-400 hover:border-amber-400 hover:text-amber-400 transition-all flex items-center justify-center";
+                navBtn.innerText = index + 1;
+                navContainer.appendChild(navBtn);
+
+                // Question Card
                 const card = document.createElement('div');
-                card.className = 'glass-card p-6 rounded-2xl flex flex-col gap-4 border border-slate-800';
-                
+                card.id = `card-l-${q.id}`;
+                card.className = 'glass-card glass-card-hover p-6 rounded-2xl flex flex-col gap-4 border border-slate-800 shadow-xl';
+
                 let optionsHTML = '';
                 q.options.forEach((opt, optIndex) => {
                     const isChecked = userAnswers.listening[q.id] === optIndex ? 'checked' : '';
                     optionsHTML += `
-                        <label class="flex items-start gap-3 bg-slate-900/60 hover:bg-slate-800/80 p-3.5 rounded-xl border border-slate-700/60 cursor-pointer transition-all">
+                        <label class="flex items-start gap-3 bg-slate-950/70 hover:bg-slate-900 p-4 rounded-xl border border-slate-800/80 cursor-pointer transition-all hover:border-amber-500/40 group">
                             <input type="radio" name="listening-${q.id}" value="${optIndex}" ${isChecked} onchange="saveAnswer('listening', '${q.id}', ${optIndex})" class="mt-1 text-amber-500 focus:ring-amber-500 bg-slate-950 border-slate-700">
-                            <span class="text-sm text-slate-200"><strong class="text-amber-400 mr-1">${String.fromCharCode(65 + optIndex)}.</strong> ${opt}</span>
+                            <span class="text-xs lg:text-sm text-slate-200 group-hover:text-white leading-relaxed"><strong class="text-amber-400 font-mono mr-1.5">${String.fromCharCode(65 + optIndex)}.</strong> ${opt}</span>
                         </label>
                     `;
                 });
 
                 card.innerHTML = `
-                    <div class="flex flex-wrap justify-between items-center border-b border-slate-700/60 pb-3 gap-2">
-                        <span class="bg-amber-500/20 text-amber-300 text-xs font-semibold px-3 py-1 rounded-full border border-amber-500/30">
-                            Soal ${index + 1} — ${q.type}
-                        </span>
-                        <button onclick="playAudio(\`${q.audioText.replace(/'/g, "\\'")}\`, this)" class="bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-bold px-4 py-2 rounded-xl transition-all shadow-md flex items-center gap-2">
-                            <i class="fa-solid fa-volume-high"></i> Putar Audio Percakapan
+                    <div class="flex flex-wrap justify-between items-center border-b border-slate-800 pb-3.5 gap-3">
+                        <div class="flex items-center gap-2">
+                            <span class="bg-amber-500/20 text-amber-300 text-xs font-bold font-mono px-3 py-1 rounded-full border border-amber-500/30">
+                                Soal ${index + 1} — ${q.type}
+                            </span>
+                        </div>
+                        <button onclick="playAudio(\`${q.audioText.replace(/'/g, "\\'")}\`, this)" class="bg-amber-500 hover:bg-amber-400 text-slate-950 text-xs font-extrabold px-4 py-2 rounded-xl transition-all shadow-md flex items-center gap-2 border border-amber-300/40">
+                            <i class="fa-solid fa-volume-high"></i> Putar Transkrip Audio
                         </button>
                     </div>
-                    <div class="bg-slate-950/80 p-4 rounded-xl border border-slate-800 text-xs text-slate-400 font-mono italic">
-                        <i class="fa-solid fa-quote-left text-amber-500/50 mr-2"></i>Dengarkan audio untuk menjawab pertanyaan di bawah ini.
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-xs text-slate-400 font-mono italic">
+                        <i class="fa-solid fa-quote-left text-amber-500/50 mr-2"></i>Dengarkan rekaman narasi audio untuk memilih jawaban terbaik.
                     </div>
-                    <p class="font-semibold text-slate-100 text-base mt-1">${q.question}</p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
+                    <p class="font-bold text-slate-100 text-sm lg:text-base leading-snug mt-1">${q.question}</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-1">
                         ${optionsHTML}
                     </div>
                 `;
@@ -737,36 +1468,49 @@
             });
         }
 
+        // Render Reading Questions and Jump Navigator
         function renderReadingSection() {
             const container = document.getElementById('reading-questions-container');
+            const navContainer = document.getElementById('reading-navigator');
             container.innerHTML = '';
+            navContainer.innerHTML = '';
 
             readingQuestions.forEach((q, index) => {
+                // Quick Navigator Button
+                const navBtn = document.createElement('button');
+                navBtn.id = `nav-r-${q.id}`;
+                navBtn.onclick = () => scrollToElement(`card-r-${q.id}`);
+                navBtn.className = "w-7 h-7 rounded-lg bg-slate-900 border border-slate-700 text-[11px] font-mono font-bold text-slate-400 hover:border-blue-400 hover:text-blue-400 transition-all flex items-center justify-center";
+                navBtn.innerText = index + 1;
+                navContainer.appendChild(navBtn);
+
+                // Question Card
                 const card = document.createElement('div');
-                card.className = 'glass-card p-6 rounded-2xl flex flex-col gap-4 border border-slate-800';
+                card.id = `card-r-${q.id}`;
+                card.className = 'glass-card glass-card-hover p-6 rounded-2xl flex flex-col gap-4 border border-slate-800 shadow-xl';
 
                 let optionsHTML = '';
                 q.options.forEach((opt, optIndex) => {
                     const isChecked = userAnswers.reading[q.id] === optIndex ? 'checked' : '';
                     optionsHTML += `
-                        <label class="flex items-start gap-3 bg-slate-900/60 hover:bg-slate-800/80 p-3.5 rounded-xl border border-slate-700/60 cursor-pointer transition-all">
+                        <label class="flex items-start gap-3 bg-slate-950/70 hover:bg-slate-900 p-4 rounded-xl border border-slate-800/80 cursor-pointer transition-all hover:border-blue-500/40 group">
                             <input type="radio" name="reading-${q.id}" value="${optIndex}" ${isChecked} onchange="saveAnswer('reading', '${q.id}', ${optIndex})" class="mt-1 text-blue-500 focus:ring-blue-500 bg-slate-950 border-slate-700">
-                            <span class="text-sm text-slate-200"><strong class="text-blue-400 mr-1">${String.fromCharCode(65 + optIndex)}.</strong> ${opt}</span>
+                            <span class="text-xs lg:text-sm text-slate-200 group-hover:text-white leading-relaxed"><strong class="text-blue-400 font-mono mr-1.5">${String.fromCharCode(65 + optIndex)}.</strong> ${opt}</span>
                         </label>
                     `;
                 });
 
                 card.innerHTML = `
-                    <div class="flex items-center justify-between border-b border-slate-700/60 pb-3">
-                        <span class="bg-blue-500/20 text-blue-300 text-xs font-semibold px-3 py-1 rounded-full border border-blue-500/30">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-3.5">
+                        <span class="bg-blue-500/20 text-blue-300 text-xs font-bold font-mono px-3 py-1 rounded-full border border-blue-500/30">
                             Soal ${index + 1} — ${q.category}
                         </span>
                     </div>
-                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-sm text-slate-300 leading-relaxed font-sans">
+                    <div class="bg-slate-950 p-4 lg:p-5 rounded-xl border border-slate-800 text-xs lg:text-sm text-slate-300 leading-relaxed font-sans">
                         ${q.text}
                     </div>
-                    <p class="font-semibold text-slate-100 text-base mt-1">${q.question}</p>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
+                    <p class="font-bold text-slate-100 text-sm lg:text-base leading-snug mt-1">${q.question}</p>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-1">
                         ${optionsHTML}
                     </div>
                 `;
@@ -774,9 +1518,32 @@
             });
         }
 
+        // Save User Multiple Choice Selection
         function saveAnswer(module, questionId, value) {
             userAnswers[module][questionId] = value;
+            
+            // Update Navigator Styling
+            const navBtn = document.getElementById(`nav-${module === 'listening' ? 'l' : 'r'}-${questionId}`);
+            if (navBtn) {
+                if (module === 'listening') {
+                    navBtn.className = "w-7 h-7 rounded-lg bg-amber-500 text-slate-950 font-mono font-bold text-[11px] shadow flex items-center justify-center";
+                } else {
+                    navBtn.className = "w-7 h-7 rounded-lg bg-blue-500 text-slate-950 font-mono font-bold text-[11px] shadow flex items-center justify-center";
+                }
+            }
         }
+
+        function scrollToElement(id) {
+            const el = document.getElementById(id);
+            if (el) {
+                el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }
+
+
+        /* ==========================================================================
+           5. REAL-TIME WRITING EVALUATION LOGIC
+           ========================================================================== */
 
         function analyzeWriting(type) {
             if (type === 'email') {
@@ -785,32 +1552,33 @@
                 const wordCount = words.length;
 
                 // Salutation Check
-                const hasSalutation = /dear|respectfully|honorable|to the rector/i.test(text);
+                const hasSalutation = /dear|respectfully|honorable|to the rector|sincerely|regards/i.test(text);
 
                 // Keywords Check
-                const keywords = ['workshop', 'administration', 'permission', 'participants'];
+                const keywords = ['seminar', 'administration', 'permission', 'campus'];
                 let foundKeywords = 0;
                 keywords.forEach(kw => {
                     if (new RegExp(kw, 'i').test(text)) foundKeywords++;
                 });
 
-                // Update UI Metrics
-                document.getElementById('email-word-count').innerText = `${wordCount} kata`;
-                
+                // Update UI Display
+                document.getElementById('email-live-word-count').innerText = `${wordCount} kata`;
+                document.getElementById('email-word-status').innerText = `${wordCount} kata`;
+
                 const salutationElem = document.getElementById('email-salutation-status');
                 if (hasSalutation) {
-                    salutationElem.className = "text-sm font-bold text-emerald-400";
-                    salutationElem.innerHTML = `<i class="fa-solid fa-check"></i> Sesuai Formal`;
+                    salutationElem.className = "text-xs font-bold text-emerald-400";
+                    salutationElem.innerHTML = `<i class="fa-solid fa-check mr-1"></i> Terpenuhi`;
                 } else {
-                    salutationElem.className = "text-sm font-bold text-red-400";
-                    salutationElem.innerHTML = `<i class="fa-solid fa-xmark"></i> Belum Ada`;
+                    salutationElem.className = "text-xs font-bold text-red-400";
+                    salutationElem.innerHTML = `<i class="fa-solid fa-xmark mr-1"></i> Belum Ditemukan`;
                 }
 
                 document.getElementById('email-keywords-status').innerText = `${foundKeywords} / 4 Terpenuhi`;
 
                 // Calculate Score
                 let score = 0;
-                if (wordCount >= 80) score += 30;
+                if (wordCount >= 60) score += 30;
                 if (wordCount >= 100 && wordCount <= 180) score += 20;
                 if (hasSalutation) score += 20;
                 score += (foundKeywords * 7.5);
@@ -834,24 +1602,25 @@
                     if (new RegExp(kw, 'i').test(text)) foundKeywords++;
                 });
 
-                // Update UI Metrics
-                document.getElementById('essay-word-count').innerText = `${wordCount} kata`;
+                // Update UI Display
+                document.getElementById('essay-live-word-count').innerText = `${wordCount} kata`;
+                document.getElementById('essay-word-status').innerText = `${wordCount} kata`;
 
                 const paraElem = document.getElementById('essay-para-status');
                 if (hasGoodPara) {
-                    paraElem.className = "text-sm font-bold text-emerald-400";
-                    paraElem.innerHTML = `<i class="fa-solid fa-check"></i> ${paragraphs.length} Paragraf`;
+                    paraElem.className = "text-xs font-bold text-emerald-400";
+                    paraElem.innerHTML = `<i class="fa-solid fa-check mr-1"></i> ${paragraphs.length} Paragraf`;
                 } else {
-                    paraElem.className = "text-sm font-bold text-red-400";
-                    paraElem.innerHTML = `Min. 2 Paragraf`;
+                    paraElem.className = "text-xs font-bold text-red-400";
+                    paraElem.innerHTML = `<i class="fa-solid fa-xmark mr-1"></i> Min 2 Paragraf`;
                 }
 
                 document.getElementById('essay-keywords-status').innerText = `${foundKeywords} / 4 Terpenuhi`;
 
                 // Calculate Score
                 let score = 0;
-                if (wordCount >= 120) score += 30;
-                if (wordCount >= 180 && wordCount <= 300) score += 20;
+                if (wordCount >= 100) score += 30;
+                if (wordCount >= 180 && wordCount <= 280) score += 20;
                 if (hasGoodPara) score += 20;
                 score += (foundKeywords * 7.5);
 
@@ -860,8 +1629,22 @@
             }
         }
 
+
+        /* ==========================================================================
+           6. FINAL EXAM CALCULATION & TKBI CONVERSION FORMULA (310 - 677 SCALE)
+           ========================================================================== */
+
+        function confirmFinishExam() {
+            if (confirm("Apakah Anda yakin ingin mengakhiri Ujian Simulasi TKBI IPDN dan melihat laporan nilai lengkap?")) {
+                finishExam();
+            }
+        }
+
         function finishExam() {
-            // Calculate Listening Correct Answers
+            // Stop timer
+            if (timerInterval) clearInterval(timerInterval);
+
+            // Calculate Listening Correct Count
             let listeningCorrect = 0;
             listeningQuestions.forEach(q => {
                 if (userAnswers.listening[q.id] === q.answer) {
@@ -869,7 +1652,7 @@
                 }
             });
 
-            // Calculate Reading Correct Answers
+            // Calculate Reading Correct Count
             let readingCorrect = 0;
             readingQuestions.forEach(q => {
                 if (userAnswers.reading[q.id] === q.answer) {
@@ -877,41 +1660,42 @@
                 }
             });
 
-            // Raw to TKBI Scale Conversion (310 to 677 Scale)
-            // Listening (Max 67 converted)
+            // TKBI Converted Sub-Scores Calculation (31 - 67 Scale each)
             const listeningScaled = Math.round(31 + (listeningCorrect / listeningQuestions.length) * 36);
-            
-            // Reading (Max 67 converted)
             const readingScaled = Math.round(31 + (readingCorrect / readingQuestions.length) * 36);
 
-            // Writing Average Quality
             const writingQualityPercent = Math.round((writingScores.email + writingScores.essay) / 2);
             const writingScaled = Math.round(31 + (writingQualityPercent / 100) * 36);
 
-            // Total Standard Formula: (L + R + W) * 10 / 3
+            // Total Score Formula: (Listening + Reading + Writing) * 10 / 3  (Standard TOEFL / TKBI Formula)
             const totalScore = Math.round(((listeningScaled + readingScaled + writingScaled) * 10) / 3);
 
             // Update UI Score Card
             document.getElementById('total-tkbi-score').innerText = totalScore;
+            
             document.getElementById('score-listening-converted').innerText = `${listeningScaled} / 67`;
-            document.getElementById('score-listening-raw').innerText = `Benar: ${listeningCorrect} / ${listeningQuestions.length}`;
+            document.getElementById('score-listening-raw').innerText = `Benar: ${listeningCorrect} / ${listeningQuestions.length} Soal`;
 
             document.getElementById('score-reading-converted').innerText = `${readingScaled} / 67`;
-            document.getElementById('score-reading-raw').innerText = `Benar: ${readingCorrect} / ${readingQuestions.length}`;
+            document.getElementById('score-reading-raw').innerText = `Benar: ${readingCorrect} / ${readingQuestions.length} Soal`;
 
             document.getElementById('score-writing-converted').innerText = `${writingScaled} / 67`;
             document.getElementById('score-writing-raw').innerText = `Kualitas: ${writingQualityPercent}%`;
 
-            // Score Predicate
+            // Assign Predicate Grade
             const predicateElem = document.getElementById('score-predicate');
             if (totalScore >= 600) {
-                predicateElem.innerText = "Sangat Memuaskan (Very Good)";
+                predicateElem.innerText = "SANGAT MEMUASKAN (EXCELLENT)";
+                predicateElem.className = "text-xs font-extrabold block bg-emerald-500 text-slate-950 py-1 px-3 rounded-lg shadow";
             } else if (totalScore >= 500) {
-                predicateElem.innerText = "Memenuhi Standar Praja (Good)";
+                predicateElem.innerText = "MEMENUHI STANDAR PRAJA (GOOD)";
+                predicateElem.className = "text-xs font-extrabold block bg-amber-400 text-slate-950 py-1 px-3 rounded-lg shadow";
             } else if (totalScore >= 420) {
-                predicateElem.innerText = "Cukup (Fair)";
+                predicateElem.innerText = "CUKUP (FAIR)";
+                predicateElem.className = "text-xs font-extrabold block bg-blue-500 text-slate-950 py-1 px-3 rounded-lg shadow";
             } else {
-                predicateElem.innerText = "Perlu Peningkatan (Needs Improvement)";
+                predicateElem.innerText = "PERLU PENINGKATAN (NEEDS IMPROVEMENT)";
+                predicateElem.className = "text-xs font-extrabold block bg-red-600 text-white py-1 px-3 rounded-lg shadow";
             }
 
             // Render Explanations
@@ -921,14 +1705,19 @@
             switchTab('result');
         }
 
+
+        /* ==========================================================================
+           7. EXPLANATION & ANSWER KEY RENDERER
+           ========================================================================== */
+
         function renderExplanations() {
             const container = document.getElementById('explanation-container');
             container.innerHTML = '';
 
             // Section Header: Listening
-            const listeningHeader = document.createElement('h4');
-            listeningHeader.className = "text-md font-bold text-amber-400 border-b border-amber-500/30 pb-2 mt-2";
-            listeningHeader.innerText = "1. Pembahasan Sub-Tes Listening";
+            const listeningHeader = document.createElement('div');
+            listeningHeader.className = "flex items-center gap-2 text-base font-bold text-amber-400 border-b border-amber-500/30 pb-2.5 mt-2 font-heading";
+            listeningHeader.innerHTML = `<i class="fa-solid fa-headphones"></i> 1. Pembahasan Sub-Tes Listening Comprehension (${listeningQuestions.length} Soal)`;
             container.appendChild(listeningHeader);
 
             listeningQuestions.forEach((q, idx) => {
@@ -936,27 +1725,31 @@
                 const isCorrect = userAns === q.answer;
 
                 const item = document.createElement('div');
-                item.className = `p-4 rounded-xl border ${isCorrect ? 'bg-emerald-950/20 border-emerald-500/40' : 'bg-red-950/20 border-red-500/40'}`;
+                item.className = `p-4 lg:p-5 rounded-xl border transition-all ${isCorrect ? 'bg-emerald-950/20 border-emerald-500/40' : 'bg-red-950/20 border-red-500/40'}`;
                 item.innerHTML = `
-                    <div class="flex items-center justify-between text-xs mb-1">
-                        <span class="font-bold text-slate-200">Soal ${idx + 1} (${q.type})</span>
-                        <span class="${isCorrect ? 'text-emerald-400' : 'text-red-400'} font-bold">
-                            ${isCorrect ? '<i class="fa-solid fa-circle-check"></i> Benar' : '<i class="fa-solid fa-circle-xmark"></i> Salah'}
+                    <div class="flex items-center justify-between text-xs mb-2">
+                        <span class="font-bold text-slate-300 font-mono">Soal ${idx + 1} (${q.type})</span>
+                        <span class="${isCorrect ? 'text-emerald-400' : 'text-red-400'} font-bold flex items-center gap-1">
+                            ${isCorrect ? '<i class="fa-solid fa-circle-check"></i> Jawaban Benar' : '<i class="fa-solid fa-circle-xmark"></i> Jawaban Salah / Belum Dijawab'}
                         </span>
                     </div>
-                    <p class="text-sm text-slate-100 font-semibold">${q.question}</p>
-                    <p class="text-xs text-slate-300 mt-1">Jawaban Anda: <span class="font-bold">${userAns !== undefined ? String.fromCharCode(65 + userAns) : 'Tidak Dijawab'}</span> | Kunci: <span class="font-bold text-amber-400">${String.fromCharCode(65 + q.answer)}</span></p>
-                    <p class="text-xs text-slate-400 mt-2 bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
-                        <strong class="text-slate-200">Pembahasan:</strong> ${q.explanation}
-                    </p>
+                    <p class="text-xs lg:text-sm text-slate-100 font-bold leading-relaxed">${q.question}</p>
+                    <div class="flex flex-wrap gap-4 text-xs text-slate-300 mt-2 font-mono">
+                        <span>Jawaban Anda: <strong class="${isCorrect ? 'text-emerald-400' : 'text-red-400'}">${userAns !== undefined ? String.fromCharCode(65 + userAns) : 'Kosong'}</strong></span>
+                        <span>Kunci Jawaban: <strong class="text-amber-400">${String.fromCharCode(65 + q.answer)}</strong></span>
+                    </div>
+                    <div class="text-xs text-slate-300 mt-3 bg-slate-950 p-3 rounded-lg border border-slate-800 leading-relaxed">
+                        <strong class="text-amber-300 block mb-0.5"><i class="fa-solid fa-lightbulb mr-1"></i> Penjelasan Ringkas:</strong>
+                        ${q.explanation}
+                    </div>
                 `;
                 container.appendChild(item);
             });
 
             // Section Header: Reading
-            const readingHeader = document.createElement('h4');
-            readingHeader.className = "text-md font-bold text-blue-400 border-b border-blue-500/30 pb-2 mt-6";
-            readingHeader.innerText = "2. Pembahasan Sub-Tes Reading";
+            const readingHeader = document.createElement('div');
+            readingHeader.className = "flex items-center gap-2 text-base font-bold text-blue-400 border-b border-blue-500/30 pb-2.5 mt-8 font-heading";
+            readingHeader.innerHTML = `<i class="fa-solid fa-book-open"></i> 2. Pembahasan Sub-Tes Reading & Language Skills (${readingQuestions.length} Soal)`;
             container.appendChild(readingHeader);
 
             readingQuestions.forEach((q, idx) => {
@@ -964,28 +1757,37 @@
                 const isCorrect = userAns === q.answer;
 
                 const item = document.createElement('div');
-                item.className = `p-4 rounded-xl border ${isCorrect ? 'bg-emerald-950/20 border-emerald-500/40' : 'bg-red-950/20 border-red-500/40'}`;
+                item.className = `p-4 lg:p-5 rounded-xl border transition-all ${isCorrect ? 'bg-emerald-950/20 border-emerald-500/40' : 'bg-red-950/20 border-red-500/40'}`;
                 item.innerHTML = `
-                    <div class="flex items-center justify-between text-xs mb-1">
-                        <span class="font-bold text-slate-200">Soal ${idx + 1} (${q.category})</span>
-                        <span class="${isCorrect ? 'text-emerald-400' : 'text-red-400'} font-bold">
-                            ${isCorrect ? '<i class="fa-solid fa-circle-check"></i> Benar' : '<i class="fa-solid fa-circle-xmark"></i> Salah'}
+                    <div class="flex items-center justify-between text-xs mb-2">
+                        <span class="font-bold text-slate-300 font-mono">Soal ${idx + 1} (${q.category})</span>
+                        <span class="${isCorrect ? 'text-emerald-400' : 'text-red-400'} font-bold flex items-center gap-1">
+                            ${isCorrect ? '<i class="fa-solid fa-circle-check"></i> Jawaban Benar' : '<i class="fa-solid fa-circle-xmark"></i> Jawaban Salah / Belum Dijawab'}
                         </span>
                     </div>
-                    <p class="text-sm text-slate-100 font-semibold">${q.question}</p>
-                    <p class="text-xs text-slate-300 mt-1">Jawaban Anda: <span class="font-bold">${userAns !== undefined ? String.fromCharCode(65 + userAns) : 'Tidak Dijawab'}</span> | Kunci: <span class="font-bold text-blue-400">${String.fromCharCode(65 + q.answer)}</span></p>
-                    <p class="text-xs text-slate-400 mt-2 bg-slate-900/80 p-2.5 rounded-lg border border-slate-800">
-                        <strong class="text-slate-200">Pembahasan:</strong> ${q.explanation}
-                    </p>
+                    <p class="text-xs lg:text-sm text-slate-100 font-bold leading-relaxed">${q.question}</p>
+                    <div class="flex flex-wrap gap-4 text-xs text-slate-300 mt-2 font-mono">
+                        <span>Jawaban Anda: <strong class="${isCorrect ? 'text-emerald-400' : 'text-red-400'}">${userAns !== undefined ? String.fromCharCode(65 + userAns) : 'Kosong'}</strong></span>
+                        <span>Kunci Jawaban: <strong class="text-blue-400">${String.fromCharCode(65 + q.answer)}</strong></span>
+                    </div>
+                    <div class="text-xs text-slate-300 mt-3 bg-slate-950 p-3 rounded-lg border border-slate-800 leading-relaxed">
+                        <strong class="text-blue-300 block mb-0.5"><i class="fa-solid fa-lightbulb mr-1"></i> Penjelasan Ringkas:</strong>
+                        ${q.explanation}
+                    </div>
                 `;
                 container.appendChild(item);
             });
         }
 
+
+        /* ==========================================================================
+           8. TAB NAVIGATION LOGIC
+           ========================================================================== */
+
         function switchTab(tabName) {
             currentTab = tabName;
 
-            // Hide all tab content
+            // Hide all tab contents
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
             
             // Show target section
@@ -993,15 +1795,23 @@
 
             // Reset tab styles
             document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.className = "tab-btn flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-heading font-semibold text-sm transition-all duration-300 text-slate-400 hover:text-white hover:bg-slate-800/60";
+                btn.className = "tab-btn flex items-center justify-center gap-2.5 py-3.5 px-4 rounded-xl font-heading font-bold text-xs lg:text-sm transition-all duration-300 text-slate-400 hover:text-white";
             });
 
-            // Active Tab style
+            // Highlight Active Tab
             const activeBtn = document.getElementById(`tab-${tabName}`);
             if (activeBtn) {
-                activeBtn.className = "tab-btn flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-heading font-semibold text-sm transition-all duration-300 bg-amber-500 text-slate-950 shadow-md font-bold";
+                activeBtn.className = "tab-btn tab-active flex items-center justify-center gap-2.5 py-3.5 px-4 rounded-xl font-heading font-bold text-xs lg:text-sm transition-all duration-300 text-slate-950";
             }
+
+            // Scroll smoothly to top of container
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
+
+
+        /* ==========================================================================
+           9. INITIALIZATION ON PAGE LOAD
+           ========================================================================== */
 
         window.onload = function() {
             startTimer();
